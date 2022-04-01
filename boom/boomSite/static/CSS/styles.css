@@ -1,0 +1,380 @@
+/* Fonts */
+@font-face {
+  font-family: Atarian;
+  src: url"({% static 'Fonts/sf_atarian_system-webfont.woff'%})";
+}
+@font-face {
+  font-family: AtarianBold;
+  src: url"({% static '/boomSite/static/Fonts/sf_atarian_system_bold-webfont.woff'%})";
+}
+@font-face {
+  font-family: AtarianItalic;
+  src: url"({% static '/boomSite/static/Fonts/sf_atarian_system_bold_italic-webfont.woff%});
+}
+
+a.nav-link{
+  font-family: sf_atarian_system_bold;
+  font-size: 30px;
+  color: #F1802D;
+}
+
+a.nav-link:hover{
+  font-family: sf_atarian_system_bold;
+  font-size: 30px;
+  color: #913c00;
+}
+
+article h1.title{
+  font-family: sf_atarian_system_bold;
+  font-size: 50px;
+}
+
+article h3.subtitle{
+  font-family: sf_atarian_system;
+  font-size: 35px;
+}
+
+article p.about-game{
+  text-align: justify;
+  font-family: sf_atarian_system;
+  font-size: 25px;
+}
+
+article p.story{
+  text-align: justify;
+  font-family: sf_atarian_system;
+  font-size: 25px;
+}
+
+article p.text{
+  font-family: sf_atarian_system;
+  font-size: 20px;
+}
+
+form label{
+  font-family: sf_atarian_system;
+  font-size: 20px;
+}
+
+div h2.title{
+  font-family: sf_atarian_system_bold;
+  font-size: 45px;
+}
+
+div h3.subtitle{
+  font-family: sf_atarian_system;
+  font-size: 35px;
+}
+
+table th.title{
+  font-family: sf_atarian_system_bold;
+  font-size: 45px;
+}
+
+table td.text{
+  font-family: sf_atarian_system;
+  font-size: 20px;
+}
+
+h1.header{
+  font-family: sf_atarian_system_bold;
+  font-size: 25px;
+}
+
+p.body{
+  font-family: sf_atarian_system;
+  font-size: 20px;
+}
+
+/* Fonts */
+
+
+
+
+
+/* Footer */
+
+footer {
+  background-color:#123740;
+  color: #ffffff; 
+  margin-top: 20px;
+  font-family: Atarian;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+footer .row{
+  justify-content: space-between;
+}
+
+div.text-center.row.d-flex{
+  max-width: 100%;
+}
+
+/* Footer */
+
+
+
+
+
+/* Navbar */
+
+nav.navbar{
+  background-color: #123740;
+}
+.navbar-nav .nav-item-current {
+  font-weight: bolder;
+  border-radius: 25px;
+  background-color: #243f46;
+  padding: 1px 1px 1px 1px; 
+}
+
+nav #navbarSupportedContent{
+  justify-content: center;
+}
+
+nav li.nav-item{
+  margin-right: 50px;
+}
+
+nav li.nav-item-current{
+  margin-right: 50px;
+}
+
+nav a.btn.register{
+  margin-right: 30px;
+  background-color: #B0D7E1;
+  border-radius: 15px;
+  font-family: AtarianBold;
+  font-size: 20px;
+  color: #549AAB;
+}
+
+nav a.btn.login{
+  margin-right: 15px;
+  background-color: #B0D7E1;
+  border-radius: 15px;
+  font-family: AtarianBold;
+  font-size: 20px;
+  color: #549AAB;
+}
+
+nav a.btn:hover{
+  color: #2c4e57;
+}
+
+div#navbarSupportedContent.collapse.navbar-collapse{
+  margin-left: 40px;
+}
+
+/* Navbar */
+
+
+
+
+
+/* Images */
+
+.logo{
+  width: 70px;
+  margin-left: 20px;
+}
+
+.logo-sign{
+  overflow: hidden;
+  max-width: 20%;
+  margin: 0 auto 25px auto;
+  display: flex;
+  padding-top: 30px;
+}
+
+article i.icon{
+  font-size: 30px;
+}
+
+img.img-fluid.photo{
+  max-width: 100%;
+}
+
+img.time{
+  max-width: 100%;
+}
+
+img.graph{
+  max-width: 40%;
+}
+
+img.photo{
+  max-width: 100%;
+  width: 150px;
+}
+
+img#alien.photo{
+  max-width: 100%;
+  width: 300px;
+}
+
+.bi-github::before {
+  font-size: 25px;
+  color: #123740;
+  margin: 0px 20px 0px 0px;
+}
+
+.bi-linkedin::before {
+  font-size: 25px;
+  color: #549AAB;
+}
+/* Images */
+
+
+
+
+/* Containers */
+
+article.container.row{
+  margin: 0 auto;
+}
+
+div.transition#contact{
+  margin-bottom: 70px;
+}
+
+div.col-sm-2.time-body{
+  margin-top: 25px;
+}
+
+div.row.d-flex#time{
+  margin-bottom: 30px;
+}
+
+article.graph{
+  text-align: center;
+}
+
+article .row{
+  justify-content: center;
+}
+
+section.container{
+  margin-bottom: 70px;
+}
+
+section.objectives div.col-md-2{
+  width: 370px;
+}
+
+div.links{
+  justify-content: space-between;
+}
+/* Containers */
+
+
+
+
+
+/* Form */
+
+form.container{
+  max-width: 650px;
+  margin-top: 30px;
+  margin: 0 auto;
+}
+
+form .checkbox{
+  margin-top: 10px;
+}
+
+div button.btn{
+  background-color: #B0D7E1;
+  border-radius: 15px;
+  font-family: AtarianBold;
+  font-size: 30px;
+  color: #549AAB;
+  border: 0px;
+}
+
+form.contact{
+  margin-top: 20px;
+}
+
+/* Form */
+
+
+
+
+
+/* Video */
+
+video{
+  height: 500px;
+}
+
+video{
+  width: 100%;
+  height: 100%;
+}
+
+video{
+  margin-bottom: 60px;
+}
+
+/* Video */
+
+
+
+
+
+/* Carousel */
+
+div#carousel.container.carousel.slide{
+  max-width: 70%;
+}
+
+/* Carousel */
+
+
+
+
+
+/* Transitions  and Animations*/
+
+.transition{
+  animation: transitionIn 1.5s;
+}
+
+@keyframes transitionIn{
+  from{
+    opacity: 0;
+    transform: rotateX(-10deg);
+  }
+
+  to{
+    opacity: 1;
+    transform: rotateX(0);
+  }
+}
+
+/* Transitions and Animations*/
+
+
+
+
+/* Cards */
+
+div.card{
+  width: 500px;
+}
+
+div.card.card-1, .card-3{
+  margin-right: 20px;
+}
+
+div.row.row-1{
+  margin-bottom: 20px;
+}
+
+article.card-deck{
+  display: flex;
+}
+
+/* Cards */

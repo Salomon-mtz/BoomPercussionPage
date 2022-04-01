@@ -1,0 +1,109 @@
+{% load static%}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'CSS/bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/open-iconic/font/css/open-iconic-bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/bootstrap-icons/font/bootstrap-icons.css'%}"> 
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system-webfont.woff'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system_bold-webfont.woff'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system_bold_italic-webfont.woff'%}" type="text/css">
+
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'Favicon/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'Favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'Favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'Favicon/site.webmanifest'%}">
+    <link rel="mask-icon" href="{% static 'Favicon/safari-pinned-tab.svg'%}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff"> 
+    <title>Boom Percussion</title>
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-md ">
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'Images/logo.svg'%}" class="logo img-fluid"></a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'stats' %}">Stats</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+      <a class="btn login" href="{% url 'signin' %}" role="button">Sign in</a>
+
+      <button class="navbar-toggler navbar-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+
+    <image class="logo-sign" src="{%static '/Images/drum logo.svg'%}" alt="logo img-fluid">
+    <form class="container form-signin">
+      <div class="form-floating mb-2">
+        <input type="name" id="name" class="form-control" placeholder="Name" required autofocus>
+        <label for="name" class="name">Name</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" id="gamer" class="form-control" placeholder="Gamertag" required autofocus>
+        <label for="gamer" class="gamertag">Gamertag</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="email" id="mail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="mail" class="email">Email</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" id="pass" class="form-control" placeholder="Password" required>
+        <label for="pass" class="password">Password</label>
+      </div>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <div class="text-end">
+        <button class="btn btn-lg" type="submit">Sign up</button>
+      </div>
+    </form>
+
+      
+
+
+
+
+    <footer>
+      <div class=" text-center row d-flex">
+        <div class="col-sm-3 flex-column">
+          <p>
+            Percusive Arts Society
+          </p>
+        </div> 
+        <div class="col-sm-3 flex-column">
+          <p>
+            Copyrights Reserved 2022
+          </p>
+        </div>
+        <div class="col-sm-3 flex-column">
+          <p>
+            Boom Percussion
+          </p>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="{% static 'CSS/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'CSS/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,260 @@
+{% load static%}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'CSS/bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/open-iconic/font/css/open-iconic-bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/bootstrap-icons/font/bootstrap-icons.css'%}"> 
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system-webfont.woff'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system_bold-webfont.woff'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system_bold_italic-webfont.woff'%}" type="text/css">
+
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'Favicon/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'Favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'Favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'Favicon/site.webmanifest'%}">
+    <link rel="mask-icon" href="{% static 'Favicon/safari-pinned-tab.svg'%}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff"> 
+    <title>Boom Percussion</title>
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-md ">
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'Images/logo.svg'%}" class="logo img-fluid"></a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item-current"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'stats' %}">Stats</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+      <a class="btn register" href="{% url 'signup' %}" role="button">Sign up</a>
+      <a class="btn login" href="{% url 'signin' %}" role="button">Sign in</a>
+
+      <button class="navbar-toggler navbar-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+    <div class="transition">
+      <video autoplay loop >
+        <source src="https://www.youtube.com/watch?v=bpOSxM0rNPM&ab_channel=OfficialArcticMonkeys"type="video/mp4"></source>
+      </video> 
+
+      <section class="container main">
+        <article>
+          <h1 class="title text-center">About the Game</h1>
+          <p class="about-game">
+            We've created a musical pedagogy game for gamers who want to learn about percussion instruments.
+            In company of boom, our main character, you will be learning to identify by sound each of the different percussion instruments
+            from different countries and cultures. The game has 4 levels, in each level your hearing and visual memory will be tested. In order
+            to complete the level you must demonstrate a full knowledge of the previous one. 
+          </p>
+        </article>
+      </section>
+
+      <section class="container objectives">
+        <article class="text-center">
+          <h1 class="title">Objectives</h1>
+          <div class="row d-flex">
+            <div class="col-md-3">
+              <div class="row d-flex">
+                <div class="col-md-2">
+                  <i class="icon bi bi-music-note-beamed"></i>
+                </div>
+              </div>
+  
+              <div class="row d-flex">
+                <div class="col-md-2">
+                  <h3 class="subtitle">
+                    Genre
+                  </h3>
+                </div>
+              </div>
+  
+              <div class="row d-flex">
+                <div class="col-md-2">
+                  <p class="text">
+                    This is a musical instruments puzzle game to test your ability to recognize percussion instruments through your hearing.
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3">
+              <div class="row d-flex">
+                <div class="col-md-2">
+                  <i class="icon oi oi-graph"></i>
+                </div>
+              </div>
+  
+              <div class="row d-flex">
+                <div class="col-md-2">
+                  <h3 class="subtitle">
+                    Stats
+                  </h3>
+                </div>
+              </div>
+  
+              <div class="row d-flex">
+                <div class="col-md-2">
+                  <p class="text">
+                    Real time global ranking and personal stats so you can measure your learning progress. 
+                  </p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3">
+              <div class="row d-flex">
+                <div class="col-md-2">
+                  <i class="icon bi bi-controller"></i>
+                </div>
+              </div>
+  
+              <div class="row d-flex">
+                <div class="col-md-2">
+                  <h3 class="subtitle">
+                    Jugability
+                  </h3>
+                </div>
+              </div>
+  
+              <div>
+                <div class="row d-flex">
+                  <div class="col-md-2">
+                    <p class="text">
+                      This is a game for everyone, it is easy to play and guarantees constant learning.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="container levels">
+        <article class="text-center">
+          <h1 class="title">Levels</h1>
+        </article>
+        <article class="cards card-decks">
+          <div class="row d-flex row-1">
+            <div class="card card-1">
+              <img class="card-img-top img-fluid" src="{% static '/Images/level1_Mesa de trabajo 1.svg'%}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Level 1</h5>
+                <p class="card-text">In the first level you will be tested with 3 different instruments. You can reproduce their sound in order to memorize it, once you are ready you can start the puzzle section.</p>
+              </div>
+            </div>
+  
+            <div class="card card-2">
+              <img class="card-img-top img-fluid" src="{% static '/Images/level2_Mesa de trabajo 1.svg'%}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Level 2</h5>
+                <p class="card-text">In the second level you will be tested with 5 different instruments. You can reproduce their sound in order to memorize it, once you are ready you can start the puzzle section.</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row d-flex row-2">
+            <div class="card card-3">
+              <img class="card-img-top img-fluid" src="{% static '/Images/level3_Mesa de trabajo 1.svg'%}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Level 3</h5>
+                <p class="card-text">In the third level you will be tested with 7 different instruments. You can reproduce their sound in order to memorize it, once you are ready you can start the puzzle section..</p>
+              </div>
+            </div>
+  
+            <div class="card card-4">
+              <img class="card-img-top img-fluid" src="{% static '/Images/level4_Mesa de trabajo 1.svg'%}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Level 4</h5>
+                <p class="card-text">In the fourth level you will be tested with 10 different instruments. You can reproduce their sound in order to memorize it, once you are ready you can start the puzzle section.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="container how">
+        <article class="text-center">
+          <h1 class="title">How to Play</h1>
+        </article>
+        <div id="carousel" class="container carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{% static '/Images/level1_Mesa de trabajo 1.svg'%}" class="d-block w-100 img-fluid" alt="slide1">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Step 1</h5>
+                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/Images/level1_Mesa de trabajo 1.svg'%}" class="d-block w-100 img-fluid" alt="slide2">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Step 2</h5>
+                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/Images/level1_Mesa de trabajo 1.svg'%}" class="d-block w-100 img-fluid" alt="slide3">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Step 3</h5>
+                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+    </div>
+
+
+
+
+    <footer>
+      <div class="text-center row d-flex">
+        <div class="col-sm-3 flex-column">
+          <p>
+            Percusive Arts Society
+          </p>
+        </div> 
+        <div class="col-sm-3 flex-column">
+          <p>
+            Copyrights Reserved 2022
+          </p>
+        </div>
+        <div class="col-sm-3 flex-column">
+          <p>
+            Boom Percussion
+          </p>
+        </div>
+      </div>
+    </footer>
+  
+    
+    <script src="{% static 'CSS/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'CSS/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+
+  </body>
+</html>

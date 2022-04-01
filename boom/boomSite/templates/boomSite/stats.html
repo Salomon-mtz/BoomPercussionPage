@@ -1,0 +1,178 @@
+{% load static%}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'CSS/bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/open-iconic/font/css/open-iconic-bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'CSS/bootstrap-icons/font/bootstrap-icons.css'%}"> 
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system-webfont.woff'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system_bold-webfont.woff'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system_bold_italic-webfont.woff'%}" type="text/css">
+
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'Favicon/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'Favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'Favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'Favicon/site.webmanifest'%}">
+    <link rel="mask-icon" href="{% static 'Favicon/safari-pinned-tab.svg'%}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff"> 
+    <title>Boom Percussion</title>
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-md ">
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'Images/logo.svg'%}" class="logo img-fluid"></a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+          <li class="nav-item-current"><a class="nav-link" href="{% url 'stats' %}">Stats</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+      <a class="btn register" href="{% url 'signup' %}" role="button">Sign up</a>
+      <a class="btn login" href="{% url 'signin' %}" role="button">Sign in</a>
+
+      <button class="navbar-toggler navbar-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+
+    <div class="transition">
+      <section class="container ranking">
+        <article class="text-center">
+          <h1 class="title">Global Ranking</h1>
+        </article>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="title" scope="col">Gamertag</th>
+              <th class="title" scope="col">Position</th>
+              <th class="title" scope="col">Level</th>
+              <th class="title" scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text">BoomGamer1</td>
+              <td class="text">First</td>
+              <td class="text">4</td>
+              <td class="text">500</td>
+            </tr>
+            <tr>
+              <td class="text">BoomGamer2</td>
+              <td class="text">Second</td>
+              <td class="text">4</td>
+              <td class="text">450</td>
+            </tr>
+            <tr>
+              <td class="text">BoomGamer3</td>
+              <td class="text">Third</td>
+              <td class="text">3</td>
+              <td class="text">300</td>
+            </tr>
+            <tr>
+              <td class="text">BoomGamer4</td>
+              <td class="text">Fourth</td>
+              <td class="text">2</td>
+              <td class="text">250</td>
+            </tr>
+            <tr>
+              <td class="text">BoomGamer5</td>
+              <td class="text">Fifth</td>
+              <td class="text">2</td>
+              <td class="text">200</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="container time">
+        <article class="text-center">
+          <h1 class="title">Time Record</h1>
+        </article>
+        <article>
+          <div class="row d-flex" id="time">
+            <div class="col-sm-2 time-image">
+              <img src="{%static '/Images/time1.svg'%}" class="time img-fluid" alt="timeRecord1">
+            </div>
+            <div class="col-sm-2 time-body">
+              <h2 class="title">BoomGamer1</h2>
+              <h3 class="subtitle">30 min</h3>
+            </div>
+          </div>
+
+          <div class="row d-flex" id="time">
+            <div class="col-sm-2 time-image">
+              <img src="{%static '/Images/time2.svg'%}" class="time img-fluid" alt="timeRecord2">
+            </div>
+            <div class="col-sm-2 time-body">
+              <h2 class="title">BoomGamer2</h2>
+              <h3 class="subtitle">40 min</h3>
+            </div>
+          </div>
+
+          <div class="row d-flex" id="time">
+            <div class="col-sm-2 time-image">
+              <img src="{%static '/Images/time3.svg'%}" class="time img-fluid" alt="timeRecord3">
+            </div>
+            <div class="col-sm-2 time-body">
+              <h2 class="title">BoomGamer3</h2>
+              <h3 class="subtitle">50 min</h3>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="container success">
+        <article class="text-center">
+          <h1 class="title">Success Average</h1>
+        </article>
+        <article class="graph">
+          <img src="{%static '/Images/graph.svg'%}" class="graph img-fluid" alt="successGraph">
+        </article>
+      </section>
+
+    </div>
+
+
+
+
+    <footer>
+      <div class=" text-center row d-flex">
+        <div class="col-sm-3 flex-column">
+          <p>
+            Percusive Arts Society
+          </p>
+        </div> 
+        <div class="col-sm-3 flex-column">
+          <p>
+            Copyrights Reserved 2022
+          </p>
+        </div>
+        <div class="col-sm-3 flex-column">
+          <p>
+            Boom Percussion
+          </p>
+        </div>
+      </div>
+    </footer>
+  
+    
+    <script src="{% static 'CSS/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'CSS/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+
+  </body>
+</html>

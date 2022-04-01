@@ -1,0 +1,190 @@
+{% load static%}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="{% static 'CSS/bootstrap/dist/css/bootstrap.min.css'%}">
+   <link rel="stylesheet" href="{% static 'CSS/styles.css'%}">
+   <link rel="stylesheet" href="{% static 'CSS/open-iconic/font/css/open-iconic-bootstrap.min.css'%}">
+   <link rel="stylesheet" href="{% static 'CSS/bootstrap-icons/font/bootstrap-icons.css'%}"> 
+   <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system-webfont.woff'%}" type="text/css">
+   <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system_bold-webfont.woff'%}" type="text/css">
+   <link rel="stylesheet" href="{% static 'Fonts/sf_atarian_system_bold_italic-webfont.woff'%}" type="text/css">
+
+
+   <!-- Favicon -->
+   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'Favicon/apple-touch-icon.png'%}">
+   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'Favicon/favicon-32x32.png'%}">
+   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'Favicon/favicon-16x16.png'%}">
+   <link rel="manifest" href="{% static 'Favicon/site.webmanifest'%}">
+   <link rel="mask-icon" href="{% static 'Favicon/safari-pinned-tab.svg'%}" color="#5bbad5">
+   <meta name="msapplication-TileColor" content="#da532c">
+   <meta name="theme-color" content="#ffffff"> 
+    <title>Boom Percussion</title>
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-md ">
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'Images/logo.svg'%}" class="logo img-fluid"></a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+          <li class="nav-item-current"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'stats' %}">Stats</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+      <a class="btn register" href="{% url 'signup' %}" role="button">Sign up</a>
+      <a class="btn login" href="{% url 'signin' %}" role="button">Sign in</a>
+
+      <button class="navbar-toggler navbar-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+
+
+    <div class="transition">
+      <section class="container main">
+        <article class="text-center">
+          <h1 class="title">About the Project</h1>
+          <p class="about-game">
+            This project was made during the fourth semester of the 
+            Computer Technology Engineering career in Tec de Monterrey, Mexico City. 
+            
+
+          </p>
+        </article>
+
+        <div id="carousel" class="container carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{% static '/Images/level1_Mesa de trabajo 1.svg'%}" class="d-block w-100 img-fluid" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/Images/level1_Mesa de trabajo 1.svg'%}" class="d-block w-100 img-fluid" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/Images/level1_Mesa de trabajo 1.svg'%}" class="d-block w-100 img-fluid" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+
+
+
+
+      <section class="container team">
+        <article class="text-center">
+          <h1 class="title">The Team</h1>
+        </article>
+        <article class="row d-flex text-center">
+          <div class="col-lg-3">
+            <div row d-flex>
+              <img src="http://placehold.jp/600x600.png" class="img-fluid rounded col-lg-3 photo mb-2">
+            </div>
+            <h1 class="header row d-flex">Eli Salomon Martinez Hernandez</h1>
+            <p class="body">Web Page design and development</p>
+            <div class="links">
+              <a class="git" href="https://github.com/Salomon-mtz" target="_blank"><i class="bi bi-github"></i></a> <a class="link" href="https://www.linkedin.com/in/salom%C3%B3n-mart%C3%ADnez-7064181a9/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div row d-flex>
+              <img src="http://placehold.jp/600x600.png" class="img-fluid rounded col-lg-3 photo mb-2">
+            </div>
+            <h1 class="header row d-flex">Arturo Alfaro Gonzalez</h1>
+            <p class="body">Videogame design and project documentation</p>
+            <div class="links">
+              <a class="git" href="#" target="_blank"><i class="bi bi-github"></i></a> <a class="link" href="https://www.linkedin.com/in/arturo-alfaro-711a0b234" target="_blank"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div row d-flex>
+              <img src="http://placehold.jp/600x600.png" class="img-fluid rounded col-lg-3 photo mb-2">
+            </div>
+            <h1 class="header row d-flex">Marco Uriel Perez Guitierrez</h1>
+            <p class="body">Videogame Design and development</p>
+            <div class="links">
+              <a class="git" href="https://github.com/MarcoPerez16" target="_blank"><i class="bi bi-github"></i></a> <a class="link" href="https://www.linkedin.com/in/marco-p%C3%A9rez-guti%C3%A9rrez-98604b202/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          
+          <div class="col-lg-3">
+            <div row d-flex>
+              <img src="http://placehold.jp/600x600.png" class="img-fluid rounded col-lg-3 photo mb-2">
+            </div>
+            <h1 class="header row d-flex">Rodrigo Aldhair Rosete Flores</h1>
+            <p class="body">Web Page and database development</p>
+            <div class="links">
+              <a class="git" href="https://github.com/AldahirRosete" target="_blank"><i class="bi bi-github"></i></a> <a class="link" href="https://www.linkedin.com/in/aldahir-rosete-b37958234/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+
+      
+      <section class="container alien">
+        <article class="text-center">
+          <h1 class="title">Boom</h1>
+          <article class="row d-flex">
+            <img src="{% static '/Images/boom.svg'%}" id="alien" class="img-fluid rounded col-lg-3 photo mb-2">
+          </article>
+          <p class="story">
+            Meet Boom, our main character during this learning journey you are going to experience with Boom Percussion Game. Boom comes from Mars,
+            a planet where there are no instruments. He was sent in an expedition to find the best way to make something the humans call music. with
+            your help he will be able to lean about percussion instruments and identify them by their sound. 
+          </p>
+        </article>
+      </section>
+
+    </div>
+        
+
+
+
+
+    <footer>
+      <div class="text-center row d-flex">
+        <div class="col-sm-3 flex-column">
+          <p>
+            Percusive Arts Society
+          </p>
+        </div> 
+        <div class="col-sm-3 flex-column">
+          <p>
+            Copyrights Reserved 2022
+          </p>
+        </div>
+        <div class="col-sm-3 flex-column">
+          <p>
+            Boom Percussion
+          </p>
+        </div>
+      </div>
+    </footer>
+  
+    
+    <script src="{% static 'CSS/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'CSS/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+
+  </body>
+</html>

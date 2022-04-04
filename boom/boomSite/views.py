@@ -38,3 +38,4 @@ def profile(request):
     template = loader.get_template('boomSite/profile.html')
     context = {}
     return HttpResponse(template.render(context, request))
+

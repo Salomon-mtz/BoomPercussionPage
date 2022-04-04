@@ -1,88 +1,88 @@
 /* Fonts */
 @font-face {
   font-family: Atarian;
-  src: url"({% static 'Fonts/sf_atarian_system-webfont.woff'%})";
+  src: local("sf_atarian_system"), url('/static/Fonts/sf_atarian_system-webfont.woff');
 }
 @font-face {
   font-family: AtarianBold;
-  src: url"({% static '/boomSite/static/Fonts/sf_atarian_system_bold-webfont.woff'%})";
+  src: local("sf_atarian_system_bold"), url('/static/Fonts/sf_atarian_system_bold-webfont.woff');
 }
 @font-face {
   font-family: AtarianItalic;
-  src: url"({% static '/boomSite/static/Fonts/sf_atarian_system_bold_italic-webfont.woff%});
-}
+  src: local("sf_atarian_system_bold_italic"), url('/static/Fonts/sf_atarian_system_bold_italic-webfont.woff');
+} 
 
 a.nav-link{
-  font-family: sf_atarian_system_bold;
+  font-family: AtarianBold;
   font-size: 30px;
   color: #F1802D;
 }
 
 a.nav-link:hover{
-  font-family: sf_atarian_system_bold;
+  font-family: AtarianBold;
   font-size: 30px;
   color: #913c00;
 }
 
 article h1.title{
-  font-family: sf_atarian_system_bold;
+  font-family: AtarianBold;
   font-size: 50px;
 }
 
 article h3.subtitle{
-  font-family: sf_atarian_system;
+  font-family: Atarian;
   font-size: 35px;
 }
 
 article p.about-game{
   text-align: justify;
-  font-family: sf_atarian_system;
+  font-family: Atarian;
   font-size: 25px;
 }
 
 article p.story{
   text-align: justify;
-  font-family: sf_atarian_system;
+  font-family: Atarian;
   font-size: 25px;
 }
 
 article p.text{
-  font-family: sf_atarian_system;
+  font-family: Atarian;
   font-size: 20px;
 }
 
 form label{
-  font-family: sf_atarian_system;
+  font-family: Atarian;
   font-size: 20px;
 }
 
 div h2.title{
-  font-family: sf_atarian_system_bold;
+  font-family: AtarianBold;
   font-size: 45px;
 }
 
 div h3.subtitle{
-  font-family: sf_atarian_system;
+  font-family: Atarian;
   font-size: 35px;
 }
 
 table th.title{
-  font-family: sf_atarian_system_bold;
+  font-family: AtarianBold;
   font-size: 45px;
 }
 
 table td.text{
-  font-family: sf_atarian_system;
+  font-family: Atarian;
   font-size: 20px;
 }
 
 h1.header{
-  font-family: sf_atarian_system_bold;
+  font-family: AtarianBold;
   font-size: 25px;
 }
 
 p.body{
-  font-family: sf_atarian_system;
+  font-family: Atarian;
   font-size: 20px;
 }
 
@@ -98,7 +98,7 @@ footer {
   background-color:#123740;
   color: #ffffff; 
   margin-top: 20px;
-  font-family: Atarian;
+  font-family: AtarianBold;
   font-size: 20px;
   margin-bottom: 0;
 }
@@ -304,10 +304,6 @@ form.contact{
 
 
 /* Video */
-
-video{
-  height: 500px;
-}
 
 video{
   width: 100%;

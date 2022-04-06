@@ -19,4 +19,5 @@ from django.urls import include, path
 urlpatterns = [
     path('', include('boomSite.urls')),
     path('admin/', admin.site.urls),
+    path('signin/', include('django.contrib.auth.urls')),
 ]

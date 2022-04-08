@@ -280,6 +280,14 @@ img.high.img-fluid{
 img.rank.img-fluid{
   width: 70%;
 }
+
+img.pas-logo{
+  width: 50%;
+}
+
+img.tec-logo{
+  width: 60%;
+}
 /* Images */
 
 
@@ -407,8 +415,12 @@ video{
 
 /* Carousel */
 
-div#carousel.container.carousel.slide{
+div.container.carousel.slide{
   max-width: 70%;
+}
+
+div.container.carousel.slide.about-carousel{
+  max-width: 50%;
 }
 
 /* Carousel */

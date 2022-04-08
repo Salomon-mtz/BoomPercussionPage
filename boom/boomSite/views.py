@@ -5,6 +5,11 @@ from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import NewUserForm
+import json
+from django.views.decorators.csrf import csrf_exempt
+import ast #para diccionario
+import sqlite3
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -77,5 +82,17 @@ def logout_user(request):
     messages.success(request, ('Logged out'))
     return redirect('index')
 
+@csrf_exempt
+def login_user(request):
+    if request.method == 'POST':
+        var = request.body
+        dicc = ast.literal_eval(var.decode('utf-8'))
+        print(dicc['gamertag'])
+        # revisar que ['user'] existe
+        u = User.objects.get(username=dicc['gamertag'])
+        p = User.objects.get(password=dicc['password1'])
+        return HttpResponse(str(u).encode('utf-8'))
+    else:
+        return HttpResponse("Please use POST")
 
 

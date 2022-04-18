@@ -5,11 +5,13 @@ from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import NewUserForm
+from .forms import NewPlayerForm
 import json
 from django.views.decorators.csrf import csrf_exempt
 import ast #para diccionario
 import sqlite3
 from django.contrib.auth.models import User
+from .models import Player
 
 
 def index(request):
@@ -37,6 +39,7 @@ def signin(request):
     if request.method == 'POST':
         username = request.POST['username']
         pwd = request.POST['password']
+        
         user = authenticate(request, username=username, password=pwd)
         
         if user is not None:
@@ -56,10 +59,15 @@ def signin(request):
 def signup(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
-        print(form)
+        form2 = NewPlayerForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, "Registration successful." )
+            return redirect("index")
+        if form2.is_valid():
+            player = form2.save()
+            login(request, player)
             messages.success(request, "Registration successful." )
             return redirect("index")
         else:
@@ -73,9 +81,12 @@ def signup(request):
     # return HttpResponse(template.render(context, request))
 
 def profile(request):
-    template = loader.get_template('boomSite/profile.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    name = request.GET["name"]
+    name = name.upper()
+    return render(request,'proceso.html',{'name':name})
+    # template = loader.get_template('boomSite/profile.html')
+    # context = {}
+    # return HttpResponse(template.render(context, request))
 
 def logout_user(request):
     logout(request)
@@ -87,11 +98,9 @@ def login_user(request):
     if request.method == 'POST':
         var = request.body
         dicc = ast.literal_eval(var.decode('utf-8'))
-        print(dicc['gamertag'])
         # revisar que ['user'] existe
-        u = User.objects.get(username=dicc['gamertag'])
-        p = User.objects.get(password=dicc['password1'])
-        return HttpResponse(str(u).encode('utf-8'))
+        u = Player.objects.filter(gamertag=dicc['gamertag'])
+        return HttpResponse(str(json.dumps(u[0].toJson())).encode('utf-8'))
     else:
         return HttpResponse("Please use POST")
 

@@ -1,3 +1,4 @@
+from email.policy import default
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -7,14 +8,12 @@ from .models import Player
 # Create your forms here.
 
 class NewUserForm(UserCreationForm):
-    
     email = forms.EmailField(required=True)
     name = forms.CharField(max_length=100)
     username = forms.CharField(max_length=100)
     password1 = forms.CharField(max_length=100)
     password2 = forms.CharField(max_length=100)
     
-
     class Meta:
         model = User
         fields = ("name", "username", "email", "password1", "password2")
@@ -27,16 +26,17 @@ class NewUserForm(UserCreationForm):
         return user
 
 
-class NewPlayerForm():
+class NewPlayerForm(forms.ModelForm):
     email = forms.EmailField(required=True)
     name = forms.CharField(max_length=100)
     username = forms.CharField(max_length=100)
     password1 = forms.CharField(max_length=100)
-    USERNAME_FIELD = [username]
+    password2 = forms.CharField(max_length=100)
+    level = forms.IntegerField()
 
     class Meta:
         model = Player
-        fields = ("name", "username", "email", "password1")
+        fields = ("name", "username", "email", "password1", "password2", "level")
 
     def save(self, commit=True):
         player = super(NewPlayerForm, self).save(commit=False)

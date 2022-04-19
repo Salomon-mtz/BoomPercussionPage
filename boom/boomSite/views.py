@@ -56,25 +56,21 @@ def signin(request):
     # context = {}
     # return HttpResponse(template.render(context, request))
 
+
 def signup(request):
     if request.method == "POST":
-        form = NewUserForm(request.POST)
-        form2 = NewPlayerForm(request.POST)
-        if form.is_valid():
+        form = NewUserForm(request.POST, instance=request.user)
+        player_form = NewPlayerForm(request.POST, instance=request.user.player)
+        if form.is_valid() and player_form.is_valid():
             user = form.save()
+            player_form.save()
             login(request, user)
-            messages.success(request, "Registration successful." )
-            return redirect("index")
-        if form2.is_valid():
-            player = form2.save()
-            login(request, player)
             messages.success(request, "Registration successful." )
             return redirect("index")
         else:
             messages.error(request, "Unsuccessful registration. Invalid information.")
     else:
-        form = NewUserForm()
-    return render(request, 'boomSite/signup.html', {})
+        return render(request, 'boomSite/signup.html', {})
 
     # template = loader.get_template('boomSite/signup.html')
     # context = {}

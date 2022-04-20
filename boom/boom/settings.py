@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     '192.168.43.92',
     'localhost',
     '20.92.251.121',
+    'boompercussion.studio'
 ]
 
 

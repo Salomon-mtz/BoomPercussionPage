@@ -122,9 +122,7 @@ def signup(request):
     # return HttpResponse(template.render(context, request))
 
 def profile(request):
-    name = request.GET["name"]
-    name = name.upper()
-    return render(request,'proceso.html',{'name':name})
+    return render(request,'boomSite/profile.html')
     # template = loader.get_template('boomSite/profile.html')
     # context = {}
     # return HttpResponse(template.render(context, request))
@@ -140,7 +138,7 @@ def login_user(request):
         var = request.body
         dicc = ast.literal_eval(var.decode('utf-8'))
         # revisar que ['user'] existe
-        u = Player.objects.filter(gamertag=dicc['gamertag'])
+        u = Player.objects.filter(username=dicc['username'])
         return HttpResponse(str(json.dumps(u[0].toJson())).encode('utf-8'))
     else:
         return HttpResponse("Please use POST")

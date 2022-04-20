@@ -30,7 +30,8 @@ class Player(models.Model):
             'username': self.username,
             'email': self.email,
             'password': self.password,
-            'level': self.level
+            'level': self.level,
+            'country': self.country
             
         }
         return a

@@ -33,7 +33,10 @@ ALLOWED_HOSTS = [
 ]
 
 
-# Application definition
+# Applicati
+# 
+# 
+# n definition
 
 INSTALLED_APPS = [
     'boomSite.apps.BoomsiteConfig',

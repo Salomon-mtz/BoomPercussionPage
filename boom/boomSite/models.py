@@ -14,12 +14,12 @@ class Player(models.Model):
     level = models.CharField(max_length=1)
     
     @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
+    def create_user_player(sender, instance, created, **kwargs):
         if created:
             Player.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
+    def save_user_player(sender, instance, **kwargs):
         instance.player.save()
     
     def toJson(self):

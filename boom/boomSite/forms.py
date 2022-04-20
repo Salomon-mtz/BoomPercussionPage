@@ -7,7 +7,7 @@ from .models import Player
 
 # Create your forms here.
 
-class NewUserForm(UserCreationForm):
+class NewUserForm(forms.ModelForm):
     email = forms.EmailField(required=True)
     name = forms.CharField(max_length=100)
     username = forms.CharField(max_length=100)
@@ -27,16 +27,12 @@ class NewUserForm(UserCreationForm):
 
 
 class NewPlayerForm(forms.ModelForm):
-    email = forms.EmailField(required=True)
-    name = forms.CharField(max_length=100)
-    username = forms.CharField(max_length=100)
-    password1 = forms.CharField(max_length=100)
-    password2 = forms.CharField(max_length=100)
+
     level = forms.IntegerField()
 
     class Meta:
         model = Player
-        fields = ("name", "username", "email", "password1", "password2", "level")
+        fields = ("level",)
 
     def save(self, commit=True):
         player = super(NewPlayerForm, self).save(commit=False)

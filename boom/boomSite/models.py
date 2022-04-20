@@ -6,12 +6,12 @@ from django.dispatch import receiver
 
 class Player(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE, default=0)
-    name = models.CharField(max_length=20, default=NULL)
-    username = models.CharField(max_length=20, default=NULL)
-    email = models.CharField(max_length=30, default=NULL)
-    password = models.CharField(max_length=20, default=NULL)
+    name = models.CharField(max_length=20)
+    username = models.CharField(max_length=20)
+    email = models.CharField(max_length=30)
+    password = models.CharField(max_length=20)
     level = models.CharField(max_length=1, default=1)
-    country = models.CharField(max_length=50, default=NULL)
+    country = models.CharField(max_length=50)
     
     @receiver(post_save, sender=User)
     def create_user_player(sender, instance, created, **kwargs):

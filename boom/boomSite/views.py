@@ -7,6 +7,7 @@ from django.contrib import messages
 from .forms import NewUserForm
 from .forms import NewPlayerForm
 import json
+from json import dumps, load, loads
 from django.views.decorators.csrf import csrf_exempt
 import ast #para diccionario
 import sqlite3
@@ -26,9 +27,53 @@ def about(request):
     return HttpResponse(template.render(context, request))
 
 def stats(request):
-    template = loader.get_template('boomSite/stats.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    
+    mydb = sqlite3.connect("db.sqlite3")
+    curr = mydb.cursor()
+    
+    query_leaderboard ='''SELECT username, globalScore, level
+        FROM boomSite_global
+        ORDER BY globalScore DESC'''
+    rows1 = curr.execute(query_leaderboard)
+    data_leaderboard = []
+    
+    counter = 0
+    for x in rows1:
+        counter += 1
+        data_leaderboard.append([counter, x[0], x[2], x[1]])
+        
+    
+    query_timeFinish ='''SELECT username, timeFinish
+        FROM boomSite_global
+        WHERE level = 4
+        ORDER BY timeFinish ASC
+        LIMIT 3'''
+    
+    rows2 = curr.execute(query_timeFinish)
+    data_timeFinish = []
+    
+    for x in rows2:
+        data_timeFinish.append([x[0], x[1]])
+        
+    
+    h_var = 'Country'
+    v_var = 'Players'
+    query_countries ='''SELECT Country, COUNT(Country)
+		FROM boomSite_player
+		GROUP BY Country
+	'''
+    rows3 = curr.execute(query_countries)
+    data = [[h_var, v_var]]
+    
+    for x in rows3:
+        data.append([x[0], x[1]])
+
+    modified_data = dumps(data)
+    
+    
+ 
+ 
+    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'values3': modified_data})
 
 def contact(request):
     template = loader.get_template('boomSite/contact.html')

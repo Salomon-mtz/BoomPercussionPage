@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from unicodedata import name
 from django.db import models
 from django.contrib.auth.models import User
@@ -6,12 +7,13 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # name = models.CharField(max_length=20)
-    # username = models.CharField(max_length=20)
-    # email = models.CharField(max_length=30)
-    # password = models.CharField(max_length=20)
-    level = models.CharField(max_length=1)
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE, default=0)
+    name = models.CharField(max_length=20, default=NULL)
+    username = models.CharField(max_length=20, default=NULL)
+    email = models.CharField(max_length=30, default=NULL)
+    password = models.CharField(max_length=20, default=NULL)
+    level = models.CharField(max_length=1, default=1)
+    country = models.CharField(max_length=50, default=NULL)
     
     @receiver(post_save, sender=User)
     def create_user_player(sender, instance, created, **kwargs):

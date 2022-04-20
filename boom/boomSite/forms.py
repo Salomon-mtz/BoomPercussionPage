@@ -29,10 +29,11 @@ class NewUserForm(forms.ModelForm):
 class NewPlayerForm(forms.ModelForm):
 
     level = forms.IntegerField()
+    country = forms.CharField(max_length=50)
 
     class Meta:
         model = Player
-        fields = ("level",)
+        fields = ("level", "country")
 
     def save(self, commit=True):
         player = super(NewPlayerForm, self).save(commit=False)

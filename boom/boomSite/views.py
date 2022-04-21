@@ -13,6 +13,8 @@ import ast #para diccionario
 import sqlite3
 from django.contrib.auth.models import User
 from .models import Player
+from .models import Global
+from django.contrib.auth.decorators import login_required   
 
 
 def index(request):
@@ -109,7 +111,7 @@ def signup(request):
         if form.is_valid() and player_form.is_valid():
             user = form.save()
             player_form.save()
-            login(request, user)
+            login(user)
             messages.success(request, "Registration successful." )
             return redirect("index")
         else:
@@ -144,3 +146,17 @@ def login_user(request):
         return HttpResponse("Please use POST")
 
 
+def playing(request):
+    mydb = sqlite3.connect("db.sqlite3")
+    curr = mydb.cursor()
+    if request.method == 'POST':
+        p = request.body
+        d = ast.literal_eval(p.decode('utf-8'))
+        userSqlite = Global.objects.filter(username=d['level'])
+        u2 = userSqlite[0]
+        u2.level = u2
+        u2.save()
+        
+        g = Global()
+        
+        

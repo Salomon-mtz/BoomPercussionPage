@@ -49,3 +49,6 @@ class Global(models.Model):
     timeFinish = models.IntegerField()
     timePlayed = models.IntegerField()
     level = models.IntegerField()
+    
+    def __init__(username, globalScore, timeFinish, timePlayed, level) -> None:
+        super().__init__(username, globalScore, timeFinish, timePlayed, level)

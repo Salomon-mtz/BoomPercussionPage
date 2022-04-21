@@ -142,7 +142,7 @@ def profile(request):
 def logout_user(request):
     logout(request)
     messages.success(request, ('Logged out'))
-    return redirect('index')
+    return render(request, 'boomSite/index.html', {})
 
 @csrf_exempt
 def login_user(request):

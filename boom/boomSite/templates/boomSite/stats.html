@@ -155,12 +155,12 @@
               <img src="{%static '/Images/time1.svg'%}" class="time img-fluid" alt="timeRecord1">
             </div>
             <div class="col-sm-2 time-body">
-              {% for d in values2 %}
-                {% for x in d %}
-                  <h2 class="title">{{ x }}</h2>
+              {% for p in values2%}
+                {% for d in p%}
+                  <h2 class="title">{{ d }}</h2>
                 {% endfor %}
-                <h3 class="subtitle"></h3>
               {% endfor %}
+
             </div>
           </div>
 

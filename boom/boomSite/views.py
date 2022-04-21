@@ -14,6 +14,7 @@ import sqlite3
 from django.contrib.auth.models import User
 from .models import Player
 from .models import Global
+from .models import Plays
 from django.contrib.auth.decorators import login_required   
 
 
@@ -60,9 +61,9 @@ def stats(request):
     
     h_var = 'Country'
     v_var = 'Players'
-    query_countries ='''SELECT Country, COUNT(Country)
+    query_countries ='''SELECT country, COUNT(country)
 		FROM boomSite_player
-		GROUP BY Country
+		GROUP BY country
 	'''
     rows3 = curr.execute(query_countries)
     data = [[h_var, v_var]]
@@ -106,16 +107,25 @@ def signin(request):
 
 def signup(request):
     if request.method == "POST":
-        form = NewUserForm(request.POST, instance=request.user)
-        player_form = NewPlayerForm(request.POST, instance=request.user.player)
-        if form.is_valid() and player_form.is_valid():
+        form = NewUserForm(request.POST)
+        #player_form = NewPlayerForm(request.POST, instance=request.user.player)
+        if form.is_valid(): #and player_form.is_valid():
             user = form.save()
-            player_form.save()
-            login(user)
-            messages.success(request, "Registration successful." )
+            user.refresh_from_db()
+            user.player.level = 1
+            user.player.country = request.POST['country']
+            print(request.POST['country'])
+            user.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request,user)
+            messages.success(request, ('Registration seccessful'))
             return redirect("index")
         else:
             messages.error(request, "Unsuccessful registration. Invalid information.")
+            print(form.errors)
+            return render(request, 'boomSite/signup.html', {'form': form})
     else:
         return render(request, 'boomSite/signup.html', {})
 
@@ -146,17 +156,40 @@ def login_user(request):
         return HttpResponse("Please use POST")
 
 
+@csrf_exempt
 def playing(request):
     mydb = sqlite3.connect("db.sqlite3")
     curr = mydb.cursor()
     if request.method == 'POST':
         p = request.body
-        d = ast.literal_eval(p.decode('utf-8'))
-        userSqlite = Global.objects.filter(username=d['level'])
-        u2 = userSqlite[0]
-        u2.level = u2
-        u2.save()
-        
+        u2 = ast.literal_eval(p.decode('utf-8'))
         g = Global()
+        g.username=u2['username']
+        g.globalScore=u2['globalScore']
+        g.timeFinish=u2['timeFinish']
+        g.timePlayed=u2['timePlayed']
+        g.level=u2['level']
+        g.save()
         
+        return HttpResponse("ok".encode('utf-8'))
+    else:
+        return HttpResponse("Please use POST")
         
+
+
+@csrf_exempt
+def level(request):
+    mydb = sqlite3.connect("db.sqlite3")
+    curr = mydb.cursor()
+    if request.method == 'POST':
+        p = request.body
+        dicc = ast.literal_eval(p.decode('utf-8'))
+        
+        userSqlite = Player.objects.filter(username=dicc['username'])
+        u3 = userSqlite[0]
+        u3.level=dicc['level']
+        u3.save()
+        
+        return HttpResponse("ok".encode('utf-8'))
+    else:
+        return HttpResponse("Please use POST")

@@ -9,14 +9,14 @@ from .models import Player
 
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    name = forms.CharField(max_length=100)
+    first_name = forms.CharField(max_length=100)
     username = forms.CharField(max_length=100)
     password1 = forms.CharField(max_length=100)
     password2 = forms.CharField(max_length=100)
     
     class Meta:
         model = User
-        fields = ("name", "username", "email", "password1", "password2")
+        fields = ("first_name", "username", "email", "password1", "password2")
 
 
 class NewPlayerForm(forms.ModelForm):

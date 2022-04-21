@@ -53,17 +53,23 @@
       <image class="logo-sign" src="{%static '/Images/drum logo.svg'%}" alt="logo img-fluid">
         <form class="container form-signin" action="{% url 'signup' %}" method="POST">
           {% csrf_token %}
-          {{ form }}
           {% if messages %}
             {% for message in messages %}
-            <div class="alert alert-primary text-center" role="alert">
-              {{ message }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <div class="alert alert-primary text-center" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          {% if form.errors %}
+            <div>
+              {{ form.errors }}
             </div>
-          {% endfor %}
-        {% endif %}
+          {% endif %}
+
           <div class="form-floating mb-2">
-            <input type="name" id="name" class="form-control" placeholder="Name" name="name" required autofocus>
+            <input type="name" id="name" class="form-control" placeholder="Name" name="first_name" required autofocus>
             <label for="name" class="name">Name</label>
           </div>
           <div class="form-floating mb-2">
@@ -75,7 +81,7 @@
             <label for="mail" class="email">Email</label>
           </div>
           <div class="form-floating mb-2">
-            <input type="country" id="country" class="form-control" placeholder="Country" name="country" required autofocus>
+            <input type="text" id="country" class="form-control" placeholder="Country" name="country" required autofocus>
             <label for="country" class="country">Country</label>
           </div>
           <div class="form-floating mb-2">

@@ -153,7 +153,7 @@ def login_user(request):
         var = request.body
         dicc = ast.literal_eval(var.decode('utf-8'))
         # revisar que ['user'] existe
-        u = User.objects.filter(username=dicc['username'])
+        u = Player.objects.filter(username=dicc['username'])
         return HttpResponse(str(json.dumps(u[0].toJson())).encode('utf-8'))
     else:
         return HttpResponse("Please use POST")

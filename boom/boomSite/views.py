@@ -112,6 +112,10 @@ def signup(request):
         if form.is_valid(): #and player_form.is_valid():
             user = form.save()
             user.refresh_from_db()
+            user.player.first_name = request.POST['first_name']
+            user.player.username = request.POST['username']
+            user.player.email = request.POST['email']
+            user.player.password = request.POST['country']
             user.player.level = 1
             user.player.country = request.POST['country']
             print(request.POST['country'])
@@ -150,7 +154,7 @@ def login_user(request):
         var = request.body
         dicc = ast.literal_eval(var.decode('utf-8'))
         # revisar que ['user'] existe
-        u = Player.objects.filter(username=dicc['username'])
+        u = User.objects.filter(username=dicc['username'])
         return HttpResponse(str(json.dumps(u[0].toJson())).encode('utf-8'))
     else:
         return HttpResponse("Please use POST")
@@ -158,8 +162,6 @@ def login_user(request):
 
 @csrf_exempt
 def playing(request):
-    mydb = sqlite3.connect("db.sqlite3")
-    curr = mydb.cursor()
     if request.method == 'POST':
         p = request.body
         u2 = ast.literal_eval(p.decode('utf-8'))
@@ -179,8 +181,6 @@ def playing(request):
 
 @csrf_exempt
 def level(request):
-    mydb = sqlite3.connect("db.sqlite3")
-    curr = mydb.cursor()
     if request.method == 'POST':
         p = request.body
         dicc = ast.literal_eval(p.decode('utf-8'))

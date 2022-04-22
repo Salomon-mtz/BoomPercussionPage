@@ -24,10 +24,10 @@ class Player(models.Model):
     
     def toJson(self):
         a = {
-            'name': User.first_name,
-            'username': User.username,
-            'email': User.email,
-            'password': User.password,
+            'name': self.first_name,
+            'username': self.username,
+            'email': self.email,
+            'password': self.password,
             'level': self.level,
             'country': self.country
             

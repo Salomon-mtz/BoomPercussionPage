@@ -162,17 +162,30 @@ def login_user(request):
 @csrf_exempt
 def playing(request):
     if request.method == 'POST':
-        p = request.body
-        u2 = ast.literal_eval(p.decode('utf-8'))
-        g = Global()
-        g.username=u2['username']
-        g.globalScore=u2['globalScore']
-        g.timeFinish=u2['timeFinish']
-        g.timePlayed=u2['timePlayed']
-        g.level=u2['level']
-        g.save()
-        
-        return HttpResponse("ok".encode('utf-8'))
+        var = request.body
+        dicc1 = ast.literal_eval(var.decode('utf-8'))
+        # revisar que ['user'] existe
+        u = Global.objects.filter(username=dicc1['username'])
+        print(u)
+        if len (u) > 0:
+            u3 = u[0]
+            u3.globalScore=dicc1['globalScore']
+            u3.timeFinish=dicc1['timeFinish']
+            u3.timePlayed=dicc1['timePlayed']
+            u3.level=dicc1['level']
+            u3.save()
+            return HttpResponse("ok".encode('utf-8'))
+        else:
+            p = request.body
+            u2 = ast.literal_eval(p.decode('utf-8'))
+            g = Global()
+            g.username=u2['username']
+            g.globalScore=u2['globalScore']
+            g.timeFinish=u2['timeFinish']
+            g.timePlayed=u2['timePlayed']
+            g.level=u2['level']
+            g.save()
+            return HttpResponse("ok".encode('utf-8'))
     else:
         return HttpResponse("Please use POST")
         
@@ -182,13 +195,27 @@ def playing(request):
 def level(request):
     if request.method == 'POST':
         p = request.body
-        dicc = ast.literal_eval(p.decode('utf-8'))
+        dicc3 = ast.literal_eval(p.decode('utf-8'))
         
-        userSqlite = Player.objects.filter(username=dicc['username'])
+        userSqlite = Player.objects.filter(username=dicc3['username'])
         u3 = userSqlite[0]
-        u3.level=dicc['level']
+        u3.level=dicc3['level']
         u3.save()
         
         return HttpResponse("ok".encode('utf-8'))
     else:
         return HttpResponse("Please use POST")
+
+@csrf_exempt
+def plays(request):
+    if request.method == 'POST':
+        p = request.body
+        u2 = ast.literal_eval(p.decode('utf-8'))
+        pl = Plays()
+        pl.username=u2['username']
+        pl.score=u2['score']
+        pl.attemps=u2['attemps']
+        pl.timeToSolve=u2['timeToSolve']
+        pl.level=u2['level']
+        pl.save()
+        return HttpResponse("ok".encode('utf-8'))

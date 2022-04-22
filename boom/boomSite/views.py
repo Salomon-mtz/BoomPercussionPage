@@ -118,7 +118,6 @@ def signup(request):
             user.player.password = request.POST['country']
             user.player.level = 1
             user.player.country = request.POST['country']
-            print(request.POST['country'])
             user.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']

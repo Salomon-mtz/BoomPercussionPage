@@ -16,7 +16,7 @@ from .models import Player
 from .models import Global
 from .models import Plays
 from django.contrib.auth.decorators import login_required   
-
+import hashlib
 
 def index(request):
     template = loader.get_template('boomSite/index.html')
@@ -74,8 +74,8 @@ def stats(request):
     modified_data = dumps(data)
     
     
- 
- 
+    
+    print(data_timeFinish)
     return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'values3': modified_data})
 
 def contact(request):
@@ -115,7 +115,9 @@ def signup(request):
             user.player.first_name = request.POST['first_name']
             user.player.username = request.POST['username']
             user.player.email = request.POST['email']
-            user.player.password = request.POST['country']
+            pwd = hashlib.md5(request.POST['password1'].encode())
+            user.player.password = pwd.hexdigest()
+            print(user.player.password)
             user.player.level = 1
             user.player.country = request.POST['country']
             user.save()
@@ -137,7 +139,18 @@ def signup(request):
     # return HttpResponse(template.render(context, request))
 
 def profile(request):
-    return render(request,'boomSite/profile.html')
+    mydb = sqlite3.connect("db.sqlite3")
+    curr = mydb.cursor()
+
+    userStr = request.user.username
+    val = (userStr, )
+    rows1 = curr.execute("SELECT globalScore FROM boomSite_global WHERE username = ? ", val)
+    res = curr.fetchall()
+    
+    for row in res:
+        gS = row[0]
+
+    return render(request,'boomSite/profile.html', {'userGlobalScore': gS})
     # template = loader.get_template('boomSite/profile.html')
     # context = {}
     # return HttpResponse(template.render(context, request))
@@ -180,7 +193,10 @@ def playing(request):
             u2 = ast.literal_eval(p.decode('utf-8'))
             g = Global()
             g.username=u2['username']
-            g.globalScore=u2['globalScore']
+            mydb = sqlite3.connect("db.sqlite3")
+            curr = mydb.cursor()
+            rows1 = curr.execute("SELECT globalScore FROM boomSite_global WHERE username = ? ", g.username)
+            g.globalScore=u2['globalScore'] + rows1
             g.timeFinish=u2['timeFinish']
             g.timePlayed=u2['timePlayed']
             g.level=u2['level']

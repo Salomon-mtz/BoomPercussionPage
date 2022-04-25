@@ -1,4 +1,5 @@
 {% load static%}
+{% load extras %}
 
 <!doctype html>
 <html lang="en">
@@ -155,12 +156,8 @@
               <img src="{%static '/Images/time1.svg'%}" class="time img-fluid" alt="timeRecord1">
             </div>
             <div class="col-sm-2 time-body">
-              {% for p in values2%}
-                {% for d in p%}
-                  <h2 class="title">{{ d }}</h2>
-                {% endfor %}
-              {% endfor %}
-
+              <h2 class="title">{{ values2|winner }}</h2>
+              <h3 class="subtitle">{{ values2|time }} min</h3>
             </div>
           </div>
 
@@ -169,8 +166,8 @@
               <img src="{%static '/Images/time2.svg'%}" class="time img-fluid" alt="timeRecord2">
             </div>
             <div class="col-sm-2 time-body">
-              <h2 class="title">BoomGamer2</h2>
-              <h3 class="subtitle">40 min</h3>
+              <h2 class="title">{{ values2|second }}</h2>
+              <h3 class="subtitle">{{ values2|time2 }} min</h3>
             </div>
           </div>
 
@@ -179,8 +176,8 @@
               <img src="{%static '/Images/time3.svg'%}" class="time img-fluid" alt="timeRecord3">
             </div>
             <div class="col-sm-2 time-body">
-              <h2 class="title">BoomGamer3</h2>
-              <h3 class="subtitle">50 min</h3>
+              <h2 class="title">{{ values2|third }}</h2>
+              <h3 class="subtitle">{{ values2|time3 }} min</h3>
             </div>
           </div>
         </article>
@@ -199,7 +196,7 @@
         <div class="container">
           <div class="worldbox">
             <h1 class="title">Players Around the World</h1>
-            <div id="regions_div" style="width: 900px; height: 500px;"></div>
+            <div id="regions_div"></div>
           </div>
         </div>
       </section>

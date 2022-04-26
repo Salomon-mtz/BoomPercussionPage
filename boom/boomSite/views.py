@@ -138,19 +138,35 @@ def signup(request):
     # context = {}
     # return HttpResponse(template.render(context, request))
 
+@login_required
 def profile(request):
     mydb = sqlite3.connect("db.sqlite3")
     curr = mydb.cursor()
 
+    #GLOBAL SCORE USER
     userStr = request.user.username
     val = (userStr, )
-    rows1 = curr.execute("SELECT globalScore FROM boomSite_global WHERE username = ? ", val)
+    curr.execute("SELECT globalScore FROM boomSite_global WHERE username = ? ", val)
     res = curr.fetchall()
     
     for row in res:
         gS = row[0]
-
-    return render(request,'boomSite/profile.html', {'userGlobalScore': gS})
+    
+    #LEVELS ACCOMPLISH USER
+    curr.execute("SELECT level FROM boomSite_player WHERE username = ? ", val)
+    res2 = curr.fetchall()
+    
+    for row in res2:
+        aL = row[0]
+        
+    #HISTORIC SCORES USER
+    curr.execute("SELECT level FROM boomSite_player WHERE username = ? ", val)
+    res2 = curr.fetchall()
+    
+    for row in res2:
+        aL = row[0]
+        
+    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL})
     # template = loader.get_template('boomSite/profile.html')
     # context = {}
     # return HttpResponse(template.render(context, request))

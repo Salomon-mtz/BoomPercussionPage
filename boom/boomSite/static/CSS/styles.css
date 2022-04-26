@@ -471,3 +471,14 @@ article.card-deck{
 }
 
 /* Cards */
+
+
+/* Graphs */
+
+.worldbox{
+    display: flex;
+    overflow: scroll;
+    justify-content: center
+}
+
+/* Graphs */

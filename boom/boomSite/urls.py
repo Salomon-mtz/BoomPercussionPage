@@ -14,5 +14,6 @@ urlpatterns = [
     path('login/', views.login_user, name="login_user"),
     path('playing/', views.playing, name="playing"),
     path('level/', views.level, name="level"),
-     path('plays/', views.plays, name="plays"),
+    path('plays/', views.plays, name="plays"),
+    #path('download/', views.download, name="download"),
 ]

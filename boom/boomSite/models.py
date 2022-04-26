@@ -39,8 +39,8 @@ class Plays(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=20)
     score = models.IntegerField()
-    attemps = models.IntegerField()
-    timeToSolve = models.IntegerField()
+    attempts = models.IntegerField()
+    timeToSolve = models.DecimalField(max_digits=5, decimal_places=2)
     level = models.IntegerField()
     
 
@@ -48,8 +48,8 @@ class Global(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=20)
     globalScore = models.IntegerField()
-    timeFinish = models.IntegerField()
-    timePlayed = models.IntegerField()
+    timeFinish = models.DecimalField(max_digits=5, decimal_places=2)
+    timePlayed = models.DecimalField(max_digits=5, decimal_places=2)
     level = models.IntegerField()
     
     # def __init__(id, username, globalScore, timeFinish, timePlayed, level) -> None:

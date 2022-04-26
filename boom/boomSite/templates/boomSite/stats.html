@@ -90,120 +90,92 @@
     </nav>
     {% endif %}
 
-
-    <div class="transition">
-      <section class="container ranking">
-        <article class="text-center">
-          <h1 class="title">Global Ranking</h1>
-        </article>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th class="title" scope="col">Position</th>
-              <th class="title" scope="col">Gamertag</th>
-              <th class="title" scope="col">Level</th>
-              <th class="title" scope="col">Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for d in values %}
+    {% if emptyStats >= 3 %}
+      <div class="transition">
+        <section class="container ranking">
+          <article class="text-center">
+            <h1 class="title">Global Ranking</h1>
+          </article>
+          <table class="table table-striped">
+            <thead>
               <tr>
-                {% for x in d %}
-                  <td> {{ x }} </td>
-                {% endfor %}
+                <th class="title" scope="col">Position</th>
+                <th class="title" scope="col">Gamertag</th>
+                <th class="title" scope="col">Level</th>
+                <th class="title" scope="col">Score</th>
               </tr>
-            {% endfor %}
-            </tr>
-            {% comment %} <tr>
-              <td class="text">BoomGamer1</td>
-              <td class="text">First</td>
-              <td class="text">4</td>
-              <td class="text">500</td>
-            </tr>
-            <tr>
-              <td class="text">BoomGamer2</td>
-              <td class="text">Second</td>
-              <td class="text">4</td>
-              <td class="text">450</td>
-            </tr>
-            <tr>
-              <td class="text">BoomGamer3</td>
-              <td class="text">Third</td>
-              <td class="text">3</td>
-              <td class="text">300</td>
-            </tr>
-            <tr>
-              <td class="text">BoomGamer4</td>
-              <td class="text">Fourth</td>
-              <td class="text">2</td>
-              <td class="text">250</td>
-            </tr>
-            <tr>
-              <td class="text">BoomGamer5</td>
-              <td class="text">Fifth</td>
-              <td class="text">2</td>
-              <td class="text">200</td>
-            </tr> {% endcomment %}
-          </tbody>
-        </table>
-      </section>
+            </thead>
+            <tbody>
+              {% for d in values %}
+                <tr>
+                  {% for x in d %}
+                    <td> {{ x }} </td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
-      <section class="container time">
-        <article class="text-center">
-          <h1 class="title">Time Record</h1>
-        </article>
-        <article>
-          <div class="row d-flex" id="time">
-            <div class="col-sm-2 time-image">
-              <img src="{%static '/Images/time1.svg'%}" class="time img-fluid" alt="timeRecord1">
+        <section class="container time">
+          <article class="text-center">
+            <h1 class="title">Time Record</h1>
+          </article>
+          <article>
+            <div class="row d-flex" id="time">
+              <div class="col-sm-2 time-image">
+                <img src="{%static '/Images/time1.svg'%}" class="time img-fluid" alt="timeRecord1">
+              </div>
+              <div class="col-sm-2 time-body">
+                <h2 class="title">{{ values2|winner }}</h2>
+                <h3 class="subtitle">{{ values2|time }} min</h3>
+              </div>
             </div>
-            <div class="col-sm-2 time-body">
-              <h2 class="title">{{ values2|winner }}</h2>
-              <h3 class="subtitle">{{ values2|time }} min</h3>
-            </div>
-          </div>
 
-          <div class="row d-flex" id="time">
-            <div class="col-sm-2 time-image">
-              <img src="{%static '/Images/time2.svg'%}" class="time img-fluid" alt="timeRecord2">
+            <div class="row d-flex" id="time">
+              <div class="col-sm-2 time-image">
+                <img src="{%static '/Images/time2.svg'%}" class="time img-fluid" alt="timeRecord2">
+              </div>
+              <div class="col-sm-2 time-body">
+                <h2 class="title">{{ values2|second }}</h2>
+                <h3 class="subtitle">{{ values2|time2 }} min</h3>
+              </div>
             </div>
-            <div class="col-sm-2 time-body">
-              <h2 class="title">{{ values2|second }}</h2>
-              <h3 class="subtitle">{{ values2|time2 }} min</h3>
-            </div>
-          </div>
 
-          <div class="row d-flex" id="time">
-            <div class="col-sm-2 time-image">
-              <img src="{%static '/Images/time3.svg'%}" class="time img-fluid" alt="timeRecord3">
+            <div class="row d-flex" id="time">
+              <div class="col-sm-2 time-image">
+                <img src="{%static '/Images/time3.svg'%}" class="time img-fluid" alt="timeRecord3">
+              </div>
+              <div class="col-sm-2 time-body">
+                <h2 class="title">{{ values2|third }}</h2>
+                <h3 class="subtitle">{{ values2|time3 }} min</h3>
+              </div>
             </div>
-            <div class="col-sm-2 time-body">
-              <h2 class="title">{{ values2|third }}</h2>
-              <h3 class="subtitle">{{ values2|time3 }} min</h3>
-            </div>
-          </div>
-        </article>
-      </section>
+          </article>
+        </section>
 
-      <section class="container success">
-        <article class="text-center">
-          <h1 class="title">Success Average</h1>
-        </article>
-        <article class="graph">
-          <img src="{%static '/Images/graph.svg'%}" class="graph img-fluid" alt="successGraph">
-        </article>
-      </section>
+        <section class="container success">
+          <article class="text-center">
+            <h1 class="title">Success Average</h1>
+          </article>
+          <article class="graph">
+            <img src="{%static '/Images/graph.svg'%}" class="graph img-fluid" alt="successGraph">
+          </article>
+        </section>
 
-      <section class="text-center" id="worldfriends">
-        <div class="container text-center">
-          <div class="worldbox text-center">
+        <section class="text-center" id="worldfriends">
+          <div class="container text-center">
             <h1 class="title">Players Around the World</h1>
-            <div id="regions_div" style="width: 900px; height: 500px;"></div>
+            <div class="worldbox">
+              <div id="regions_div" style="width: 900px; height: 500px;"></div>
+            </div>
           </div>
-        </div>
-      </section>
-
-    </div>
+        </section>
+      </div>
+    {% else %}
+      <h1>no stats</h1>
+    {% endif %}
 
 
 

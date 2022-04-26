@@ -1,6 +1,8 @@
+import chunk
+from fileinput import filename
 from multiprocessing import context
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
 from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -17,12 +19,19 @@ from .models import Global
 from .models import Plays
 from django.contrib.auth.decorators import login_required   
 import hashlib
+import mimetypes
+from django.http import StreamingHttpResponse
+from wsgiref.util import FileWrapper
+import os
+
 
 def index(request):
     template = loader.get_template('boomSite/index.html')
     context = {}
     return HttpResponse(template.render(context, request))
 
+# def download(request):
+    
 
 def about(request):
     template = loader.get_template('boomSite/about.html')
@@ -73,10 +82,15 @@ def stats(request):
 
     modified_data = dumps(data)
     
+    curr.execute("SELECT * FROM boomSite_global")
+    res = curr.fetchall()
+    empty = len(res)
+
+
+
     
     
-    print(data_timeFinish)
-    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'values3': modified_data})
+    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'values3': modified_data, 'emptyStats': empty})
 
 def contact(request):
     template = loader.get_template('boomSite/contact.html')
@@ -116,7 +130,7 @@ def signup(request):
             user.player.username = request.POST['username']
             user.player.email = request.POST['email']
             pwd = hashlib.md5(request.POST['password1'].encode())
-            user.player.password = pwd.hexdigest()
+            user.player.password = pwd.hexdigest().upper()
             print(user.player.password)
             user.player.level = 1
             user.player.country = request.POST['country']
@@ -166,7 +180,15 @@ def profile(request):
     for row in res2:
         aL = row[0]
         
-    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL})
+    
+    rows1 = curr.execute("SELECT score, level FROM boomSite_plays WHERE username = ? ", val)
+    personalScores = []
+
+    for x in rows1:
+        personalScores.append([x[0], x[1]])
+        
+    
+    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores})
     # template = loader.get_template('boomSite/profile.html')
     # context = {}
     # return HttpResponse(template.render(context, request))
@@ -193,9 +215,7 @@ def playing(request):
     if request.method == 'POST':
         var = request.body
         dicc1 = ast.literal_eval(var.decode('utf-8'))
-        # revisar que ['user'] existe
         u = Global.objects.filter(username=dicc1['username'])
-        print(u)
         if len (u) > 0:
             u3 = u[0]
             u3.globalScore=dicc1['globalScore']
@@ -209,10 +229,7 @@ def playing(request):
             u2 = ast.literal_eval(p.decode('utf-8'))
             g = Global()
             g.username=u2['username']
-            mydb = sqlite3.connect("db.sqlite3")
-            curr = mydb.cursor()
-            rows1 = curr.execute("SELECT globalScore FROM boomSite_global WHERE username = ? ", g.username)
-            g.globalScore=u2['globalScore'] + rows1
+            g.globalScore=u2['globalScore']
             g.timeFinish=u2['timeFinish']
             g.timePlayed=u2['timePlayed']
             g.level=u2['level']
@@ -241,13 +258,24 @@ def level(request):
 @csrf_exempt
 def plays(request):
     if request.method == 'POST':
-        p = request.body
-        u2 = ast.literal_eval(p.decode('utf-8'))
-        pl = Plays()
-        pl.username=u2['username']
-        pl.score=u2['score']
-        pl.attemps=u2['attemps']
-        pl.timeToSolve=u2['timeToSolve']
-        pl.level=u2['level']
-        pl.save()
-        return HttpResponse("ok".encode('utf-8'))
+        var = request.body
+        dicc4 = ast.literal_eval(var.decode('utf-8'))
+        u = Plays.objects.filter(level=dicc4['level'])
+        if len (u) > 0:
+            u3 = u[0]
+            u3.score=dicc4['score']
+            u3.attempts=dicc4['attempts']
+            u3.timeToSolve=dicc4['timeToSolve']
+            u3.save()
+            return HttpResponse("ok".encode('utf-8'))
+        else:
+            p = request.body
+            u2 = ast.literal_eval(p.decode('utf-8'))
+            pl = Plays()
+            pl.username=u2['username']
+            pl.score=u2['score']
+            pl.attempts=u2['attempts']
+            pl.timeToSolve=u2['timeToSolve']
+            pl.level=u2['level']
+            pl.save()
+            return HttpResponse("ok".encode('utf-8'))

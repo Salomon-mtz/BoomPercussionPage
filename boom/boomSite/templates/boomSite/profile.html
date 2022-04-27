@@ -134,11 +134,7 @@
                         <div class="globalScore">
                           <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
                           <div class="headerGlobal"> 
-                            {% for r in rank %}
-                              {% for x in r %}
-                              <h2 class="globalText">{{ x }}</h1>
-                              {% endfor %}
-                            {% endfor %}
+                            <h2 class="globalText">{{ rank}}</h1>
                           </div>
                         </div>
                     </div>  

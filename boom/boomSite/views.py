@@ -205,14 +205,6 @@ def profile(request):
     s = dumps(success)
     
     
-    ranking = curr.execute("SELECT username, level, globalScore FROM boomSite_global  WHERE username = ? ORDER BY globalScore DESC", val)
-    rank = []
-    
-    counter = 0
-    for x in ranking:
-        counter += 1
-        rank.append([counter])
-    
     # Posicion del player
     leaderboard =curr.execute("SELECT username, globalScore, level FROM boomSite_global ORDER BY globalScore DESC")
     data_leaderboard = []
@@ -227,6 +219,23 @@ def profile(request):
             print(position)
             break
     
+<<<<<<< HEAD
+    # Posicion del player
+    leaderboard =curr.execute("SELECT username, globalScore, level FROM boomSite_global ORDER BY globalScore DESC")
+    data_leaderboard = []
+    counter = 0
+    for x in leaderboard:
+        counter += 1
+        data_leaderboard.append([counter, x[0], x[2], x[1]])
+    position = -1
+    for y in data_leaderboard:
+        if y[1] == userStr:
+            position = y[0]
+            print(position)
+            break
+    
+=======
+>>>>>>> 82717d7bfc6f14d6a0f15a531f0ec65b88fe7800
     return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': position })
     # template = loader.get_template('boomSite/profile.html')
     # context = {}

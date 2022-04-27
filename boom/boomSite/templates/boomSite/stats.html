@@ -160,7 +160,7 @@
             <h1 class="title">Success Average</h1>
           </article>
           <article class="graph">
-            <img src="{%static '/Images/graph.svg'%}" class="graph img-fluid" alt="successGraph">
+            <img src="{% static '/Images/graph.svg'%}" class="graph img-fluid" alt="successGraph">
           </article>
         </section>
 
@@ -174,7 +174,7 @@
         </section>
       </div>
     {% else %}
-      <h1>no stats</h1>
+      <img src="{% static '/Images/boomStats.svg'%}" class="boomStats img-fluid" alt="boomStatistics">
     {% endif %}
 
 

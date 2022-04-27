@@ -477,7 +477,6 @@ article.card-deck{
 
 .worldbox{
     display: flex;
-    overflow: scroll;
     justify-content: center
 }
 

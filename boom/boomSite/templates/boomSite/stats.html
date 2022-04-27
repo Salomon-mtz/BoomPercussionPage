@@ -96,26 +96,28 @@
           <article class="text-center">
             <h1 class="title">Global Ranking</h1>
           </article>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th class="title" scope="col">Position</th>
-                <th class="title" scope="col">Gamertag</th>
-                <th class="title" scope="col">Level</th>
-                <th class="title" scope="col">Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for d in values %}
+          <div class="table-responsive-md">
+            <table class="table table-striped leaderboard">
+              <thead>
                 <tr>
-                  {% for x in d %}
-                    <td> {{ x }} </td>
-                  {% endfor %}
+                  <th class="title" scope="col">Position</th>
+                  <th class="title" scope="col">Gamertag</th>
+                  <th class="title" scope="col">Level</th>
+                  <th class="title" scope="col">Score</th>
                 </tr>
-              {% endfor %}
-              </tr>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {% for d in values %}
+                  <tr>
+                    {% for x in d %}
+                      <td> {{ x }} </td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section class="container time">
@@ -167,7 +169,7 @@
         <section class="text-center" id="worldfriends">
           <div class="container text-center">
             <h1 class="title">Players Around the World</h1>
-            <div class="worldbox">
+            <div class="worldbox table-responsive-md">
               <div id="regions_div" style="width: 900px; height: 500px;"></div>
             </div>
           </div>

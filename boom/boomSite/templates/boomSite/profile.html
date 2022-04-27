@@ -38,15 +38,16 @@
         var options = {
           chart: {
             title: 'Level Accomplishment'
-          }
+        }
           
         };
 
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
+      };
     </script>
+  
   </head>
   <body>
 
@@ -134,11 +135,10 @@
                         <div class="globalScore">
                           <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
                           <div class="headerGlobal"> 
-                            {% for r in rank %}
-                              {% for x in r %}
-                              <h2 class="globalText">{{ x }}</h1>
-                              {% endfor %}
-                            {% endfor %}
+                          
+                              
+                              <h2 class="globalText">{{ rank }}</h1>
+                          
                           </div>
                         </div>
                     </div>  

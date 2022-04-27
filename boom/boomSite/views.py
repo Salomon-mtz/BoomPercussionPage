@@ -87,7 +87,17 @@ def stats(request):
     res = curr.fetchall()
     empty = len(res)
 
-    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'values3': modified_data, 'emptyStats': empty})
+    # Mayores tiempos jugados
+    ht1 = 'Username'
+    ht2 = 'Time Played'
+    tiemposJugados = curr.execute("SELECT username, timePlayed FROM boomSite_global ORDER BY timePlayed DESC")
+    successtj = [[ht1 , ht2]]
+    
+    for x in tiemposJugados:
+        successtj.append([x[0], x[1]])
+    tiemposJugados = dumps(successtj)
+
+    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty})
 
 def contact(request):
     template = loader.get_template('boomSite/contact.html')
@@ -203,7 +213,21 @@ def profile(request):
         counter += 1
         rank.append([counter])
     
-    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': rank })
+    # Posicion del player
+    leaderboard =curr.execute("SELECT username, globalScore, level FROM boomSite_global ORDER BY globalScore DESC")
+    data_leaderboard = []
+    counter = 0
+    for x in leaderboard:
+        counter += 1
+        data_leaderboard.append([counter, x[0], x[2], x[1]])
+    position = -1
+    for y in data_leaderboard:
+        if y[1] == userStr:
+            position = y[0]
+            print(position)
+            break
+    
+    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': position })
     # template = loader.get_template('boomSite/profile.html')
     # context = {}
     # return HttpResponse(template.render(context, request))

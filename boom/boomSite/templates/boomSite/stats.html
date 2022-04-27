@@ -47,6 +47,29 @@
         chart.draw(data, options);
       }
     </script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages: ["corechart"]});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = google.visualization.arrayToDataTable({{valoresTiempo|safe}});
+
+        var options = {
+          chart: {
+            title: 'Level Accomplishment',
+            bars: 'horizontal',// Required for Material Bar Charts.
+            axes: {
+              x: {
+                0: { side: 'top', label: 'Percentage'} // Top x-axis.
+              }
+            }
+          }
+        };
+        var visualization = new google.visualization.BarChart(document.getElementById('top_tiempos'));
+        
+        visualization.draw(data, options);
+      };
+    </script>
   </head>
   <body>
 
@@ -159,11 +182,11 @@
 
         <section class="container success">
           <article class="text-center">
-            <h1 class="title">Success Average</h1>
+            <h1 class="title">Time Played</h1>
           </article>
-          <article class="graph">
-            <img src="{% static '/Images/graph.svg'%}" class="graph img-fluid" alt="successGraph">
-          </article>
+          <div class="graph-levels table-responsive-md">
+            <div id="top_tiempos" style="width: 800px; height: 500px;"></div>
+          </div>
         </section>
 
         <section class="text-center" id="worldfriends">

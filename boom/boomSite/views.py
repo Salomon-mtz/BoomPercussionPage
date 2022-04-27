@@ -1,7 +1,6 @@
 import chunk
 from fileinput import filename
 from multiprocessing import context
-from tkinter import S
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, StreamingHttpResponse
 from django.template import loader

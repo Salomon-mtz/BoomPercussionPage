@@ -39,6 +39,7 @@
           chart: {
             title: 'Level Accomplishment'
           }
+          
         };
 
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
@@ -123,20 +124,24 @@
                         <h1 class="title">Global Score</h1>
                         <div class="globalScore">
                           <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
-                          <h2 class="title">{{ userGlobalScore }}</h1>
+                          <div class="headerGlobal"> 
+                            <h2 class="globalText">{{ userGlobalScore }}</h2>
+                          </div>
                         </div>
                     </div>
                     <div class="col">
                         <h1 class="title">Ranking Position</h1>
-                        <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
-                        {% for r in rank %}
-                          {% for x in r %}
-                            <h2 class="title">{{ x }}</h1>
-                          {% endfor %}
-                        {% endfor %}
-                        
-                    </div>
-                    
+                        <div class="globalScore">
+                          <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
+                          <div class="headerGlobal"> 
+                            {% for r in rank %}
+                              {% for x in r %}
+                              <h2 class="globalText">{{ x }}</h1>
+                              {% endfor %}
+                            {% endfor %}
+                          </div>
+                        </div>
+                    </div>  
                 </div>
             </article>
 
@@ -166,9 +171,9 @@
 
             <article class="success text-center">
                 <div>
-                  <h1 class="title">Success Average</h1>
+                  <h1 class="title">Levels vs Attempts</h1>
                 </div>
-                <div class="graph">
+                <div class="graph-levels table-responsive-md">
                   <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
                 </div>
             </article>

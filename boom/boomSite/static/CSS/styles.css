@@ -61,6 +61,12 @@ div h2.title{
   font-size: 45px;
 }
 
+h2.globalText{
+  font-family: AtarianBold;
+  font-size: 200px;
+  color: #F1802D;
+}
+
 div h3.subtitle{
   font-family: Atarian;
   font-size: 35px;
@@ -351,6 +357,18 @@ article.success{
 article.drums{
   margin-bottom: 30px;
 }
+
+.globalScore{
+  position: relative;
+  text-align: center;
+}
+
+.headerGlobal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 /* Containers */
 
 
@@ -480,4 +498,8 @@ article.card-deck{
     justify-content: center
 }
 
+.graph-levels{
+  display: flex;
+  justify-content: center;
+}
 /* Graphs */

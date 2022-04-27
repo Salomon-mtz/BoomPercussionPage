@@ -1,6 +1,7 @@
 import chunk
 from fileinput import filename
 from multiprocessing import context
+from tkinter import S
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, StreamingHttpResponse
 from django.template import loader
@@ -86,10 +87,6 @@ def stats(request):
     res = curr.fetchall()
     empty = len(res)
 
-
-
-    
-    
     return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'values3': modified_data, 'emptyStats': empty})
 
 def contact(request):
@@ -188,10 +185,15 @@ def profile(request):
         personalScores.append([x[0], x[1]])
         
     
-    curr.execute("SELECT attempts, level FROM boomSite_plays WHERE username = ? ", val)
-    success = curr.fetchall()
-
-
+    h = 'Level'
+    v = 'Attempts'
+    s = curr.execute("SELECT attempts, level FROM boomSite_plays WHERE username = ? ", val)
+    success = [[h , v]]
+    
+    for x in s:
+        success.append([x[1], x[0]])
+    s = dumps(success)
+    
     
     ranking = curr.execute("SELECT username, level, globalScore FROM boomSite_global  WHERE username = ? ORDER BY globalScore DESC", val)
     rank = []
@@ -201,7 +203,7 @@ def profile(request):
         counter += 1
         rank.append([counter])
     
-    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':success, 'rank': rank })
+    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': rank })
     # template = loader.get_template('boomSite/profile.html')
     # context = {}
     # return HttpResponse(template.render(context, request))

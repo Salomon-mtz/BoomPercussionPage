@@ -26,6 +26,26 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff"> 
     <title>Boom Percussion</title>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable({{success|safe}});
+
+        var options = {
+          chart: {
+            title: 'Level Accomplishment'
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
   </head>
   <body>
 
@@ -109,6 +129,12 @@
                     <div class="col">
                         <h1 class="title">Ranking Position</h1>
                         <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
+                        {% for r in rank %}
+                          {% for x in r %}
+                            <h2 class="title">{{ x }}</h1>
+                          {% endfor %}
+                        {% endfor %}
+                        
                     </div>
                     
                 </div>
@@ -143,7 +169,7 @@
                   <h1 class="title">Success Average</h1>
                 </div>
                 <div class="graph">
-                  <img src="{%static '/Images/graph.svg'%}" class="graph img-fluid" alt="successGraph">
+                  <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
                 </div>
             </article>
         </section>

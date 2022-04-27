@@ -188,7 +188,20 @@ def profile(request):
         personalScores.append([x[0], x[1]])
         
     
-    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores})
+    curr.execute("SELECT attempts, level FROM boomSite_plays WHERE username = ? ", val)
+    success = curr.fetchall()
+
+
+    
+    ranking = curr.execute("SELECT username, level, globalScore FROM boomSite_global  WHERE username = ? ORDER BY globalScore DESC", val)
+    rank = []
+    
+    counter = 0
+    for x in ranking:
+        counter += 1
+        rank.append([counter])
+    
+    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':success, 'rank': rank })
     # template = loader.get_template('boomSite/profile.html')
     # context = {}
     # return HttpResponse(template.render(context, request))

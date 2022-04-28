@@ -95,8 +95,13 @@ def stats(request):
     for x in tiemposJugados:
         successtj.append([x[0], x[1]])
     tiemposJugados = dumps(successtj)
+    
+    curr.execute("SELECT * FROM boomSite_global WHERE level = 4")
+    res = curr.fetchall()
+    print(res)
+    level = len(res)
 
-    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty})
+    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty, 'emptyLevel': level})
 
 def contact(request):
     template = loader.get_template('boomSite/contact.html')

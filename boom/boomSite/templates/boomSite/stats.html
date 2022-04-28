@@ -143,42 +143,47 @@
           </div>
         </section>
 
-        <section class="container time">
-          <article class="text-center">
-            <h1 class="title">Time Record</h1>
-          </article>
-          <article>
-            <div class="row d-flex" id="time">
-              <div class="col-sm-2 time-image">
-                <img src="{% static '/Images/t1.svg'%}" class="time img-fluid" alt="timeRecord1">
-              </div>
-              <div class="col-sm-2 time-body">
-                <h2 class="title">{{ values2|winner }}</h2>
-                <h3 class="subtitle">{{ values2|time }} sec</h3>
-              </div>
-            </div>
+        {% if emptyLevel >= 3 %}
 
-            <div class="row d-flex" id="time">
-              <div class="col-sm-2 time-image">
-                <img src="{% static '/Images/t2.svg'%}" class="time img-fluid" alt="timeRecord2">
+          <section class="container time">
+            <article class="text-center">
+              <h1 class="title">Time Record</h1>
+            </article>
+            <article>
+              <div class="row d-flex" id="time">
+                <div class="col-sm-2 time-image">
+                  <img src="{% static '/Images/t1.svg'%}" class="time img-fluid" alt="timeRecord1">
+                </div>
+                <div class="col-sm-2 time-body">
+                  <h2 class="title">{{ values2|winner }}</h2>
+                  <h3 class="subtitle">{{ values2|time }} sec</h3>
+                </div>
               </div>
-              <div class="col-sm-2 time-body">
-                <h2 class="title">{{ values2|second }}</h2>
-                <h3 class="subtitle">{{ values2|time2 }} sec</h3>
-              </div>
-            </div>
 
-            <div class="row d-flex" id="time">
-              <div class="col-sm-2 time-image">
-                <img src="{% static '/Images/t3.svg'%}" class="time img-fluid" alt="timeRecord3">
+              <div class="row d-flex" id="time">
+                <div class="col-sm-2 time-image">
+                  <img src="{% static '/Images/t2.svg'%}" class="time img-fluid" alt="timeRecord2">
+                </div>
+                <div class="col-sm-2 time-body">
+                  <h2 class="title">{{ values2|second }}</h2>
+                  <h3 class="subtitle">{{ values2|time2 }} sec</h3>
+                </div>
               </div>
-              <div class="col-sm-2 time-body">
-                <h2 class="title">{{ values2|third }}</h2>
-                <h3 class="subtitle">{{ values2|time3 }} sec</h3>
+
+              <div class="row d-flex" id="time">
+                <div class="col-sm-2 time-image">
+                  <img src="{% static '/Images/t3.svg'%}" class="time img-fluid" alt="timeRecord3">
+                </div>
+                <div class="col-sm-2 time-body">
+                  <h2 class="title">{{ values2|third }}</h2>
+                  <h3 class="subtitle">{{ values2|time3 }} sec</h3>
+                </div>
               </div>
-            </div>
-          </article>
-        </section>
+            </article>
+          </section>
+        {% else %}
+          <div>NO stats</div>
+        {% endif %}
 
         <section class="container success">
           <article class="text-center">

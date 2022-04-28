@@ -322,3 +322,5 @@ def plays(request):
             pl.level=u2['level']
             pl.save()
             return HttpResponse("ok".encode('utf-8'))
+    else:
+        return HttpResponse("Please use POST")

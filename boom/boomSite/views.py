@@ -100,8 +100,18 @@ def stats(request):
     res = curr.fetchall()
     print(res)
     level = len(res)
+    
+    #Gráfica de Niviveles
+    hl1 = 'Username'
+    hl2 = 'Level'
+    nivelesJugadores = curr.execute("SELECT username, level FROM boomSite_global ORDER BY level ASC")
+    successlj = [[hl1 , hl2]]
+    
+    for y in nivelesJugadores:
+        successlj.append([y[0], y[1]])
+    nivelesJugadores = dumps(successlj)
 
-    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty, 'emptyLevel': level})
+    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty, 'emptyLevel': level, 'niveles':nivelesJugadores})
 
 def contact(request):
     template = loader.get_template('boomSite/contact.html')

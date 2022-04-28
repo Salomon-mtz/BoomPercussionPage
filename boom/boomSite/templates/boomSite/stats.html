@@ -70,6 +70,23 @@
         visualization.draw(data, options);
       };
     </script>
+
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable({{niveles|safe}});
+
+
+        var options = {
+          title: 'Levels per Player',
+          legend: { position: 'none' },
+        };
+
+        var chart = new google.visualization.Histogram(document.getElementById('chart_niveles'));
+        chart.draw(data, options);
+      };
+    </script>
   </head>
   <body>
 
@@ -144,7 +161,6 @@
         </section>
 
         {% if emptyLevel >= 3 %}
-
           <section class="container time">
             <article class="text-center">
               <h1 class="title">Time Record</h1>
@@ -182,7 +198,9 @@
             </article>
           </section>
         {% else %}
-          <div>NO stats</div>
+          <section class="container text-center" id="boomTimeStats">
+            <img src="{% static '/Images/boomTimeStats.svg'%}" class="boomTime img-fluid" alt="boomTimeStatistics">
+          </section>
         {% endif %}
 
         <section class="container success">
@@ -191,6 +209,15 @@
           </article>
           <div class="graph-levels table-responsive-md">
             <div id="top_tiempos" style="width: 800px; height: 500px;"></div>
+          </div>
+        </section>
+
+        <section class="container success">
+          <article class="text-center">
+            <h1 class="title">Levels</h1>
+          </article>
+          <div class="graph-levels table-responsive-md">
+            <div id="chart_niveles" style="width: 900px; height: 500px;"></div>
           </div>
         </section>
 

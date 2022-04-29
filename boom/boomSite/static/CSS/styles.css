@@ -112,6 +112,11 @@ span.time{
   font-size: 30px;
   margin-right: 85px;
 }
+
+a.license{
+  color: white;
+  text-decoration: underline;
+}
 /* Fonts */
 
 

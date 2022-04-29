@@ -7,7 +7,6 @@ from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import NewUserForm
-from .forms import NewPlayerForm
 import json
 from json import dumps, load, loads
 from django.views.decorators.csrf import csrf_exempt
@@ -40,9 +39,11 @@ def about(request):
 
 def stats(request):
     
+    #Conexión con la base de datos
     mydb = sqlite3.connect("db.sqlite3")
     curr = mydb.cursor()
     
+    #Leaderboard query
     query_leaderboard ='''SELECT username, globalScore, level
         FROM boomSite_global
         ORDER BY globalScore DESC'''
@@ -55,6 +56,7 @@ def stats(request):
         data_leaderboard.append([counter, x[0], x[2], x[1]])
         
     
+    #Time Finish Query
     query_timeFinish ='''SELECT username, timeFinish
         FROM boomSite_global
         WHERE level = 4
@@ -68,6 +70,7 @@ def stats(request):
         data_timeFinish.append([x[0], x[1]])
         
     
+    #Map Query
     h_var = 'Country'
     v_var = 'Players'
     query_countries ='''SELECT country, COUNT(country)
@@ -82,11 +85,12 @@ def stats(request):
 
     modified_data = dumps(data)
     
+    #Sin Stats Query
     curr.execute("SELECT * FROM boomSite_global")
     res = curr.fetchall()
     empty = len(res)
 
-    # Mayores tiempos jugados
+    #Time Played Query
     ht1 = 'Username'
     ht2 = 'Time Played'
     tiemposJugados = curr.execute("SELECT username, timePlayed FROM boomSite_global ORDER BY timePlayed DESC")
@@ -96,12 +100,12 @@ def stats(request):
         successtj.append([x[0], x[1]])
     tiemposJugados = dumps(successtj)
     
+    #Sin level graph Query
     curr.execute("SELECT * FROM boomSite_global WHERE level = 4")
     res = curr.fetchall()
-    print(res)
     level = len(res)
     
-    #Gráfica de Niviveles
+    #Levels per Username Query
     hl1 = 'Username'
     hl2 = 'Level'
     nivelesJugadores = curr.execute("SELECT username, level FROM boomSite_global ORDER BY level ASC")
@@ -134,17 +138,12 @@ def signin(request):
             
     else:
         return render(request, 'boomSite/signin.html', {})
-        
-    # template = loader.get_template('boomSite/signin.html')
-    # context = {}
-    # return HttpResponse(template.render(context, request))
 
 
 def signup(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
-        #player_form = NewPlayerForm(request.POST, instance=request.user.player)
-        if form.is_valid(): #and player_form.is_valid():
+        if form.is_valid(): 
             user = form.save()
             user.refresh_from_db()
             user.player.first_name = request.POST['first_name']
@@ -152,7 +151,6 @@ def signup(request):
             user.player.email = request.POST['email']
             pwd = hashlib.md5(request.POST['password1'].encode())
             user.player.password = pwd.hexdigest().upper()
-            print(user.player.password)
             user.player.level = 1
             user.player.country = request.POST['country']
             user.save()
@@ -169,9 +167,6 @@ def signup(request):
     else:
         return render(request, 'boomSite/signup.html', {})
 
-    # template = loader.get_template('boomSite/signup.html')
-    # context = {}
-    # return HttpResponse(template.render(context, request))
 
 @login_required
 def profile(request):
@@ -195,13 +190,6 @@ def profile(request):
         aL = row[0]
         
     #HISTORIC SCORES USER
-    curr.execute("SELECT level FROM boomSite_player WHERE username = ? ", val)
-    res2 = curr.fetchall()
-    
-    for row in res2:
-        aL = row[0]
-        
-    
     rows1 = curr.execute("SELECT score, level FROM boomSite_plays WHERE username = ? ", val)
     personalScores = []
 
@@ -209,6 +197,7 @@ def profile(request):
         personalScores.append([x[0], x[1]])
         
     
+    #ATTEMPTS VS LEVELS PLAYED
     h = 'Level'
     v = 'Attempts'
     s = curr.execute("SELECT attempts, level FROM boomSite_plays WHERE username = ? ", val)
@@ -219,7 +208,7 @@ def profile(request):
     s = dumps(success)
     
     
-    # Posicion del player
+    #PLAYER GLOBAL RANKING POSITION
     leaderboard =curr.execute("SELECT username, globalScore, level FROM boomSite_global ORDER BY globalScore DESC")
     data_leaderboard = []
     counter = 0
@@ -233,23 +222,8 @@ def profile(request):
             print(position)
             break
     
-    # Posicion del player
-    leaderboard =curr.execute("SELECT username, globalScore, level FROM boomSite_global ORDER BY globalScore DESC")
-    data_leaderboard = []
-    counter = 0
-    for x in leaderboard:
-        counter += 1
-        data_leaderboard.append([counter, x[0], x[2], x[1]])
-    position = -1
-    for y in data_leaderboard:
-        if y[1] == userStr:
-            position = y[0]
-            print(position)
-            break
     return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': position })
-    # template = loader.get_template('boomSite/profile.html')
-    # context = {}
-    # return HttpResponse(template.render(context, request))
+
 
 def logout_user(request):
     logout(request)
@@ -261,7 +235,6 @@ def login_user(request):
     if request.method == 'POST':
         var = request.body
         dicc = ast.literal_eval(var.decode('utf-8'))
-        # revisar que ['user'] existe
         u = Player.objects.filter(username=dicc['username'])
         return HttpResponse(str(json.dumps(u[0].toJson())).encode('utf-8'))
     else:
@@ -318,13 +291,25 @@ def plays(request):
     if request.method == 'POST':
         var = request.body
         dicc4 = ast.literal_eval(var.decode('utf-8'))
-        u = Plays.objects.filter(level=dicc4['level'])
+        p = Plays.objects.filter(username=dicc4['username'])
+        if len(p) == 0:
+            p = request.body
+            u2 = ast.literal_eval(p.decode('utf-8'))
+            pl = Plays()
+            pl.username=u2['username']
+            pl.score=u2['score']
+            pl.attempts=u2['attempts']
+            pl.timeToSolve=u2['timeToSolve']
+            pl.level=u2['level']
+            pl.save() 
+        u = Plays.objects.filter(level=dicc4['level'], username=dicc4['username'])
         if len (u) > 0:
             u3 = u[0]
             u3.score=dicc4['score']
             u3.attempts=dicc4['attempts']
             u3.timeToSolve=dicc4['timeToSolve']
             u3.save()
+            print("Atualizar", u3)
             return HttpResponse("ok".encode('utf-8'))
         else:
             p = request.body
@@ -336,6 +321,7 @@ def plays(request):
             pl.timeToSolve=u2['timeToSolve']
             pl.level=u2['level']
             pl.save()
+            print("Crear", pl)
             return HttpResponse("ok".encode('utf-8'))
     else:
         return HttpResponse("Please use POST")

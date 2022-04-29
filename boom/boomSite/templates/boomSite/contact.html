@@ -43,7 +43,7 @@
         </ul>
       </div>
       <a class="user" href="{% url 'profile' %}"><i class="bi bi-person-circle"></i></a>
-      <a class="btn logout" href="{% url 'logout' %}" role="button">Log Out</a>
+      <a class="btn logout" href="{% url 'logout_user' %}" role="button">Log Out</a>
 
       <button class="navbar-toggler navbar-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -104,8 +104,8 @@
 
 
 
-    <footer class="fixed-bottom">
-      <div class="text-center row d-flex">
+    <footer>
+      <div class=" text-center row d-flex">
         <div class="col-sm-3 flex-column">
           <p>
             Percusive Arts Society
@@ -113,7 +113,7 @@
         </div> 
         <div class="col-sm-3 flex-column">
           <p>
-            Copyrights Reserved 2022
+            <a class="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1"></a></p>
           </p>
         </div>
         <div class="col-sm-3 flex-column">
@@ -122,7 +122,7 @@
           </p>
         </div>
       </div>
-      </footer>
+    </footer>
   
     
       <script src="{% static 'CSS/jquery/dist/jquery.min.js' %}"></script>

@@ -221,12 +221,19 @@
           </div>
         </section>
 
-        <section class="text-center" id="worldfriends">
+        <section class="container text-center" id="worldfriends">
           <div class="container text-center">
             <h1 class="title">Players Around the World</h1>
             <div class="worldbox table-responsive-md">
               <div id="regions_div" style="width: 900px; height: 500px;"></div>
             </div>
+          </div>
+        </section>
+
+        <section class="container totalPLayers text-center">
+          <h1 class="title">Total Players Connected</h1>
+          <div class="text-center">
+            <div class="counter text-center" data-count={{number}}></div>
           </div>
         </section>
       </div>
@@ -261,5 +268,28 @@
     <script src="{% static 'CSS/jquery/dist/jquery.min.js' %}"></script>
     <script src="{% static 'CSS/bootstrap/dist/js/bootstrap.min.js'%}"></script>
 
+    <script>
+      $('.counter').each(function() {
+        var $this = $(this),
+            countTo = $this.attr('data-count');
+        
+        $({ countNum: $this.text()}).animate({
+          countNum: countTo
+        },
+        {
+          duration: 3000,
+          easing:'linear',
+          step: function() {
+            $this.text(Math.floor(this.countNum));
+          },
+          complete: function() {
+            $this.text(this.countNum);
+            //alert('finished');
+          }
+      
+        });  
+        
+      });
+    </script>
   </body>
 </html>

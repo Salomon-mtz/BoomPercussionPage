@@ -511,4 +511,25 @@ article.card-deck{
   display: flex;
   justify-content: center;
 }
+
+.counter {
+  
+
+  display: table-cell;
+  margin:1.5%;
+  font-size:50px;
+  background-color: #F1802D;
+  width:200px;
+  border-radius: 50%;
+  height:200px;
+  vertical-align: middle;
+  padding-top: 50px;
+  display: inline-block;
+  font-family: AtarianBold;
+  font-size: 60px;
+  color: white;
+
+ 
+
+}
 /* Graphs */

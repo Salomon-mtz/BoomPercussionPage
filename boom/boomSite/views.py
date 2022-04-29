@@ -114,8 +114,26 @@ def stats(request):
     for y in nivelesJugadores:
         successlj.append([y[0], y[1]])
     nivelesJugadores = dumps(successlj)
+    
+    #Player Counter Query
+    
+    h_var = 'Number'
+    v_var = 'Players'
+    qPlayers = curr.execute("SELECT COUNT (DISTINCT user_id) FROM boomSite_player")
+    data = []
+    
+    for x in qPlayers:
+        data.append(x[0])
+        t = data[0]
+        print(t)
 
-    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty, 'emptyLevel': level, 'niveles':nivelesJugadores})
+    total_players = dumps(data)
+
+    curr.execute("SELECT * FROM boomSite_global")
+    res = curr.fetchall()
+    empty = len(res)
+
+    return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty, 'emptyLevel': level, 'niveles':nivelesJugadores, 'number': t})
 
 def contact(request):
     template = loader.get_template('boomSite/contact.html')

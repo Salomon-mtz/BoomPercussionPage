@@ -232,8 +232,11 @@
 
         <section class="container totalPLayers text-center">
           <h1 class="title">Total Players Connected</h1>
-          <div class="text-center">
-            <div class="counter text-center" data-count={{number}}></div>
+          <div class="globalScore">
+            <img src="{% static 'Images/drum.svg'%}" class="players img-fluid">
+            <div class="headerGlobal"> 
+              <div class="counter" data-count={{ number }}></div>
+            </div>
           </div>
         </section>
       </div>

@@ -34,6 +34,17 @@ article h3.subtitle{
   font-size: 35px;
 }
 
+h3.subtitle{
+  font-family: Atarian;
+  font-size: 35px;
+}
+
+h1.download{
+  font-family: Atarian;
+  font-size: 35px;
+  text-decoration: none;
+}
+
 article p.about-game{
   text-align: justify;
   font-family: Atarian;
@@ -51,6 +62,11 @@ article p.text{
   font-size: 20px;
 }
 
+p#text{
+  font-family: Atarian;
+  font-size: 30px;
+}
+
 form label{
   font-family: Atarian;
   font-size: 20px;
@@ -63,7 +79,7 @@ div h2.title{
 
 h2.globalText{
   font-family: AtarianBold;
-  font-size: 200px;
+  font-size: 70px;
   color: #F1802D;
 }
 
@@ -284,12 +300,50 @@ img#alien.photo{
   margin-right: 25px;
 }
 
+.bi-windows{
+  color:#243f46;
+  font-size: 40px;
+
+}
+
+.bi-file-earmark-zip-fill{
+  color:#243f46;
+  font-size: 40px;
+}
+
+.bi-filetype-exe{
+  color:#243f46;
+  font-size: 40px;
+}
+
+.bi-controller{
+  color:#243f46;
+  font-size: 40px;
+}
+
+/* .i-plain:hover {
+  background-color: #F1802D !important;
+} */
+
+.i-plain {
+  color: #123740;
+  background-color: transparent !important
+}
+
+.i-plain:hover {
+  color: #F1802D !important;
+}
+
 img.high.img-fluid{
   width: 70%;
 }
 
 img.rank.img-fluid{
-  width: 70%;
+  width: 60%;
+}
+
+img.players.img-fluid{
+  width: 25%;
 }
 
 img.pas-logo{
@@ -513,12 +567,9 @@ article.card-deck{
 }
 
 .counter {
-  
-
   display: table-cell;
   margin:1.5%;
   font-size:50px;
-  background-color: #F1802D;
   width:200px;
   border-radius: 50%;
   height:200px;
@@ -527,9 +578,6 @@ article.card-deck{
   display: inline-block;
   font-family: AtarianBold;
   font-size: 60px;
-  color: white;
-
- 
-
+  color: #F1802D;
 }
 /* Graphs */

@@ -94,87 +94,91 @@
 
    
     <div class="transition">
-        <section class="container">
+      <div class="container text-end">
+        <h1 class="name">Hi {{ name }} </h1>
+        <span class="lastLog"> Last login: {{last}} </span>
+      </div>
+      <section class="container">
 
-          
-            <h1 class="title mt-3">Levels Accomplished</h1>
-            {% if levelAccomplish == 1 %}
-            <div class="progress mb-5">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"><span class="time text-end">Level 1</span></div>
-            </div>
-            {% endif %}
-            {% if levelAccomplish == 2 %}
-            <div class="progress mb-5">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"><span class="time text-end">Level 2</span></div>
-            </div>
-            {% endif %}
-            {% if levelAccomplish == 3 %}
-            <div class="progress mb-5">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"><span class="time text-end">Level 3</span></div>
-            </div>
-            {% endif %}
-            {% if levelAccomplish == 4 %}
-            <div class="progress mb-5">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="time text-end">Level 4</span></div>
-            </div>
-            {% endif %}
-            <article class="text-center drums">
-      
-                <div class="row d-flex">
-                    <div class="col">
-                        <h1 class="title">Global Score</h1>
-                        <div class="globalScore">
-                          <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
-                          <div class="headerGlobal"> 
-                            <h2 class="globalText">{{ userGlobalScore }}</h2>
-                          </div>
+        
+          <h1 class="title mt-3">Levels Accomplished</h1>
+          {% if levelAccomplish == 1 %}
+          <div class="progress mb-5">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"><span class="time text-end">Level 1</span></div>
+          </div>
+          {% endif %}
+          {% if levelAccomplish == 2 %}
+          <div class="progress mb-5">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"><span class="time text-end">Level 2</span></div>
+          </div>
+          {% endif %}
+          {% if levelAccomplish == 3 %}
+          <div class="progress mb-5">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"><span class="time text-end">Level 3</span></div>
+          </div>
+          {% endif %}
+          {% if levelAccomplish == 4 %}
+          <div class="progress mb-5">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="time text-end">Level 4</span></div>
+          </div>
+          {% endif %}
+          <article class="text-center drums">
+    
+              <div class="row d-flex">
+                  <div class="col">
+                      <h1 class="title">Global Score</h1>
+                      <div class="globalScore">
+                        <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
+                        <div class="headerGlobal"> 
+                          <h2 class="globalText">{{ userGlobalScore }}</h2>
                         </div>
-                    </div>
-                    <div class="col">
-                        <h1 class="title">Ranking Position</h1>
-                        <div class="globalScore">
-                          <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
-                          <div class="headerGlobal"> 
-                              <h2 class="globalText">{{ rank }}</h1>
-                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <h1 class="title">Ranking Position</h1>
+                      <div class="globalScore">
+                        <img src="{% static 'Images/drum.svg'%}" class="rank img-fluid">
+                        <div class="headerGlobal"> 
+                            <h2 class="globalText">{{ rank }}</h1>
                         </div>
-                    </div>  
-                </div>
-            </article>
+                      </div>
+                  </div>  
+              </div>
+          </article>
 
-            <article class="text-center historic">
-                    <div>
-                        <h1 class="title">Historic Scores</h1>
-                        <table class="table table-striped">
-                            <thead>
+          <article class="text-center historic">
+                  <div>
+                      <h1 class="title">Historic Scores</h1>
+                      <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th class="title" scope="col">Score</th>
+                              <th class="title" scope="col">Level</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for d in scores %}
                               <tr>
-                                <th class="title" scope="col">Score</th>
-                                <th class="title" scope="col">Level</th>
+                                {% for x in d %}
+                                  <td> {{ x }} </td>
+                                {% endfor %}
                               </tr>
-                            </thead>
-                            <tbody>
-                              {% for d in scores %}
-                                <tr>
-                                  {% for x in d %}
-                                    <td> {{ x }} </td>
-                                  {% endfor %}
-                                </tr>
-                              {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>    
-                </div>
-            </article>
+                            {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>    
+              </div>
+          </article>
 
-            <article class="success text-center">
-                <div>
-                  <h1 class="title">Levels vs Attempts</h1>
-                </div>
-                <div class="graph-levels table-responsive-md">
-                  <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-                </div>
-            </article>
-        </section>
+          <article class="success text-center">
+              <div>
+                <h1 class="title">Levels vs Attempts</h1>
+              </div>
+              <div class="graph-levels table-responsive-md">
+                <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+              </div>
+          </article>
+      </section>
     </div>
 
 

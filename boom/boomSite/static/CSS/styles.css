@@ -133,6 +133,18 @@ a.license{
   color: white;
   text-decoration: underline;
 }
+
+h1.name{
+  font-family: AtarianBold;
+  font-size: 100px;
+  color: #549AAB;
+}
+
+span.lastLog{
+  font-family: Atarian;
+  font-size: 20px;
+  color: #123740;
+}
 /* Fonts */
 
 

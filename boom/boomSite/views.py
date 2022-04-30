@@ -240,7 +240,24 @@ def profile(request):
             print(position)
             break
     
-    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': position })
+    
+    #NOMBRE
+    curr.execute("SELECT username FROM auth_user WHERE username = ?", val)
+    n = curr.fetchall()
+    
+    for x in n:
+        nombre = x[0]
+        
+        
+    #LAST LOGIN
+    curr.execute("SELECT last_login FROM auth_user WHERE username = ?", val)
+    last = curr.fetchall()
+    
+    for x in last:
+        lastLog = x[0]
+        
+    
+    return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': position, 'name': nombre, 'last':lastLog })
 
 
 def logout_user(request):

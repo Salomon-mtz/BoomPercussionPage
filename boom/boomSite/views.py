@@ -199,14 +199,18 @@ def profile(request):
     mydb = sqlite3.connect("db.sqlite3")
     curr = mydb.cursor()
 
-    #GLOBAL SCORE USER
     userStr = request.user.username
     val = (userStr, )
+    
+    
+    #GLOBAL SCORE USER
     curr.execute("SELECT globalScore FROM boomSite_global WHERE username = ? ", val)
     res = curr.fetchall()
+    gS = 0
     
     for row in res:
         gS = row[0]
+    
     
     #LEVELS ACCOMPLISH USER
     curr.execute("SELECT level FROM boomSite_player WHERE username = ? ", val)
@@ -214,6 +218,7 @@ def profile(request):
     
     for row in res2:
         aL = row[0]
+        
         
     #HISTORIC SCORES USER
     rows1 = curr.execute("SELECT score, level FROM boomSite_plays WHERE username = ? ", val)
@@ -241,11 +246,10 @@ def profile(request):
     for x in leaderboard:
         counter += 1
         data_leaderboard.append([counter, x[0], x[2], x[1]])
-    position = -1
+    position = 0
     for y in data_leaderboard:
         if y[1] == userStr:
             position = y[0]
-            print(position)
             break
     
     
@@ -264,6 +268,10 @@ def profile(request):
     for x in last:
         lastLog = x[0]
         
+        
+    #NO STATS
+    curr.execute("SELECT * FROM auth_user WHERE username = ?", val)
+    last = curr.fetchall()
     
     return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': position, 'name': nombre, 'last':lastLog })
 

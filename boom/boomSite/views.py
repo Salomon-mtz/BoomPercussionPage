@@ -2,13 +2,13 @@ import chunk
 from fileinput import filename
 from multiprocessing import context
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, StreamingHttpResponse
+from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import NewUserForm
 import json
-from json import dumps, load, loads
+from json import dumps
 from django.views.decorators.csrf import csrf_exempt
 import ast #para diccionario
 import sqlite3
@@ -18,10 +18,6 @@ from .models import Global
 from .models import Plays
 from django.contrib.auth.decorators import login_required   
 import hashlib
-import mimetypes
-from django.http import StreamingHttpResponse
-from wsgiref.util import FileWrapper
-import os
 
 
 def index(request):
@@ -29,13 +25,14 @@ def index(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
-# def download(request):
     
 
 def about(request):
     template = loader.get_template('boomSite/about.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+
 
 def stats(request):
     
@@ -85,10 +82,12 @@ def stats(request):
 
     modified_data = dumps(data)
     
+    
     #Sin Stats Query
     curr.execute("SELECT * FROM boomSite_global")
     res = curr.fetchall()
     empty = len(res)
+
 
     #Time Played Query
     ht1 = 'Username'
@@ -100,10 +99,12 @@ def stats(request):
         successtj.append([x[0], x[1]])
     tiemposJugados = dumps(successtj)
     
+    
     #Sin level graph Query
     curr.execute("SELECT * FROM boomSite_global WHERE level = 4")
     res = curr.fetchall()
     level = len(res)
+    
     
     #Levels per Username Query
     hl1 = 'Username'
@@ -115,30 +116,35 @@ def stats(request):
         successlj.append([y[0], y[1]])
     nivelesJugadores = dumps(successlj)
     
-    #Player Counter Query
     
-    h_var = 'Number'
-    v_var = 'Players'
+    #Player Counter Query
     qPlayers = curr.execute("SELECT COUNT (DISTINCT user_id) FROM boomSite_player")
     data = []
     
     for x in qPlayers:
         data.append(x[0])
         t = data[0]
-        print(t)
 
-    total_players = dumps(data)
 
+    #Empty Stats Query
     curr.execute("SELECT * FROM boomSite_global")
     res = curr.fetchall()
     empty = len(res)
+    
+    
+    #
+    
 
     return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty, 'emptyLevel': level, 'niveles':nivelesJugadores, 'number': t})
+
+
 
 def contact(request):
     template = loader.get_template('boomSite/contact.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+
 
 def signin(request):
     if request.method == 'POST':
@@ -156,6 +162,7 @@ def signin(request):
             
     else:
         return render(request, 'boomSite/signin.html', {})
+
 
 
 def signup(request):
@@ -184,6 +191,7 @@ def signup(request):
             return render(request, 'boomSite/signup.html', {'form': form})
     else:
         return render(request, 'boomSite/signup.html', {})
+
 
 
 @login_required
@@ -260,10 +268,13 @@ def profile(request):
     return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': position, 'name': nombre, 'last':lastLog })
 
 
+
 def logout_user(request):
     logout(request)
     messages.success(request, ('Logged out'))
     return render(request, 'boomSite/index.html', {})
+
+
 
 @csrf_exempt
 def login_user(request):
@@ -274,6 +285,7 @@ def login_user(request):
         return HttpResponse(str(json.dumps(u[0].toJson())).encode('utf-8'))
     else:
         return HttpResponse("Please use POST")
+
 
 
 @csrf_exempt
@@ -320,6 +332,8 @@ def level(request):
         return HttpResponse("ok".encode('utf-8'))
     else:
         return HttpResponse("Please use POST")
+
+
 
 @csrf_exempt
 def plays(request):

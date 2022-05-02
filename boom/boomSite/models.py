@@ -34,6 +34,9 @@ class Player(models.Model):
             
         }
         return a
+    
+    def __str__(self):
+        return self.first_name, self.username, self.email, self.password, self.level, self.country
 
 
 class Plays(models.Model):
@@ -44,6 +47,9 @@ class Plays(models.Model):
     timeToSolve = models.DecimalField(max_digits=5, decimal_places=2)
     level = models.IntegerField()
     
+    def __str__(self):
+        return self.plays_text
+    
 
 class Global(models.Model):
     id = models.AutoField(primary_key=True)
@@ -53,5 +59,6 @@ class Global(models.Model):
     timePlayed = models.DecimalField(max_digits=5, decimal_places=2)
     level = models.IntegerField()
     
-    # def __init__(id, username, globalScore, timeFinish, timePlayed, level) -> None:
-    #     super().__init__(id, username, globalScore, timeFinish, timePlayed, level)
+    def __str__(self):
+        return self.global_text
+    

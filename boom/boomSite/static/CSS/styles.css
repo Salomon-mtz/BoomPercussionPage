@@ -318,6 +318,15 @@ img#alien.photo{
 
 }
 
+.bi-link{
+  color:#F1802D;
+  font-size: 100px;
+}
+
+.link-hover:hover{
+  color: #549AAB;
+}
+
 .bi-file-earmark-zip-fill{
   color:#243f46;
   font-size: 40px;

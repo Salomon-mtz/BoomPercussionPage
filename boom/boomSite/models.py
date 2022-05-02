@@ -1,4 +1,3 @@
-from time import timezone
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
@@ -34,9 +33,6 @@ class Player(models.Model):
             
         }
         return a
-    
-    def __str__(self):
-        return self.first_name, self.username, self.email, self.password, self.level, self.country
 
 
 class Plays(models.Model):
@@ -46,9 +42,7 @@ class Plays(models.Model):
     attempts = models.IntegerField()
     timeToSolve = models.DecimalField(max_digits=5, decimal_places=2)
     level = models.IntegerField()
-    
-    def __str__(self):
-        return self.plays_text
+
     
 
 class Global(models.Model):
@@ -58,7 +52,5 @@ class Global(models.Model):
     timeFinish = models.DecimalField(max_digits=5, decimal_places=2)
     timePlayed = models.DecimalField(max_digits=5, decimal_places=2)
     level = models.IntegerField()
-    
-    def __str__(self):
-        return self.global_text
+
     

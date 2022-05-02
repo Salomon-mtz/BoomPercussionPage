@@ -131,9 +131,6 @@ def stats(request):
     res = curr.fetchall()
     empty = len(res)
     
-    
-    #
-    
 
     return render(request, 'boomSite/stats.html', {'values':data_leaderboard, 'values2': data_timeFinish, 'valoresTiempo': tiemposJugados,'values3': modified_data, 'emptyStats': empty, 'emptyLevel': level, 'niveles':nivelesJugadores, 'number': t})
 
@@ -212,7 +209,7 @@ def profile(request):
         gS = row[0]
     
     
-    #LEVELS ACCOMPLISH USER
+    #LEVELS ACCOMPLISHED USER
     curr.execute("SELECT level FROM boomSite_player WHERE username = ? ", val)
     res2 = curr.fetchall()
     
@@ -268,10 +265,6 @@ def profile(request):
     for x in last:
         lastLog = x[0]
         
-        
-    #NO STATS
-    curr.execute("SELECT * FROM auth_user WHERE username = ?", val)
-    last = curr.fetchall()
     
     return render(request,'boomSite/profile.html', {'userGlobalScore': gS, 'levelAccomplish': aL, 'scores': personalScores, 'success':s, 'rank': position, 'name': nombre, 'last':lastLog })
 
@@ -336,7 +329,6 @@ def level(request):
         u3 = userSqlite[0]
         u3.level=dicc3['level']
         u3.save()
-        
         return HttpResponse("ok".encode('utf-8'))
     else:
         return HttpResponse("Please use POST")

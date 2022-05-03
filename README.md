@@ -11,6 +11,6 @@
 ### Project Name: Boom Percussion
 ### Contact:
   #### Elí Salomón Martínez Hernández | A01653876@tec.mx
-  #### Marco Uriel Pérez Guitiérrez | A01660337@tec.mx
+  #### Marco Uriel Pérez Gutiérrez  | A01660337@tec.mx
   #### Arturo Alfaro González | A01659734@tec.mx
   #### Rodrigo Aldahir Rosete Flores | A01652878@tec.mx
